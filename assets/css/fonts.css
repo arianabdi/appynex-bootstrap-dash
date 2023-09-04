@@ -1,0 +1,26 @@
+@font-face {
+    font-family: 'dana';
+    font-style:  normal;
+    font-weight: 900;
+    src: url("../../assets/fonts/dana/dana-bold.ttf") format('truetype')
+  }
+  @font-face {
+    font-family: 'dana';
+    font-style:  normal;
+    font-weight: 500;
+    src: url("../../assets/fonts/dana/dana-regular.ttf") format('truetype')
+  }
+
+  @font-face {
+    font-family: 'yekan-bakh';
+    font-style:  normal;
+    font-weight: 500;
+    src: url("../../assets/fonts/yekan-bakh/YekanBakh-Medium.ttf") format('truetype')
+  }
+  @font-face {
+    font-family: 'yekan-bakh';
+    font-style:  normal;
+    font-weight: 100;
+    src: url("../../assets/fonts/yekan-bakh/YekanBakh-Regular.ttf") format('truetype')
+  }
+  
