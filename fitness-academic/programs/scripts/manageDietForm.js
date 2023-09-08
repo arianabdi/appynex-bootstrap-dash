@@ -152,16 +152,12 @@ form.addEventListener("change", function(event) {
   let label = event.target.dataset.label;
 
 
-
-  
-
-  // var dietItem = $(this).closest('.diet-item');
-
   if(label === "title"){
     //change its title
+    dietFormData[index][label] = value;
     var title = document.getElementById(`diet-title-${index}`);
     title.textContent = dietFormData[index][label];
-    dietFormData[index][label] = value;
+    
 
   }else if(label === "suggestion"){
     let parentElement = event.target.closest('.diet-item');
