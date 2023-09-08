@@ -24,47 +24,48 @@ limit.addEventListener('change', handleSelectLimitChange);
 
 
 
-// Function to render pagination
 function generatePagination(currentPage, totalPages) {
-    const paginationElement = document.getElementById('pagination');
-    page = currentPage;
+  const paginationElement = document.getElementById('pagination');
+  page = currentPage;
 
-    paginationElement.innerHTML = ''; // Clear existing pagination links
+  paginationElement.innerHTML = ''; // Clear existing pagination links
 
-    if (totalPages > 1) {
+  if (totalPages > 1) {
       const prevPage = document.createElement('li');
       prevPage.className = 'page-item';
       prevPage.id = 'prevPage';
       const prevLink = document.createElement('a');
       prevLink.className = 'page-link page-link-icon';
 
-      prevLink.innerHTML = '<i data-feather="chevron-left"></i>';
-    //   pageLink.addEventListener('click', () => {
-    //     currentPage = currentPage -1;
-    //     // Call your API function with the new currentPage value
-    //     // Replace this line with your Axios code
-    //     console.log(`Fetching data for page ${currentPage}`);
-    //     fetchData(currentPage, limit, totalItems, totalPages)
-    //   });
+      prevLink.innerHTML = '<i data-feather="chevron-right"></i>';
+      // Add click event listener to handle previous page navigation
+      prevLink.addEventListener('click', () => {
+          currentPage = Math.max(currentPage - 1, 1); // Ensure currentPage doesn't go below 1
+          fetchData(currentPage, limit.value, totalItems, totalPages);
+      });
+
       prevPage.appendChild(prevLink);
       paginationElement.appendChild(prevPage);
 
-      for (let i = 1; i <= totalPages; i++) {
-        const pageItem = document.createElement('li');
-        pageItem.className = 'page-item';
-        const pageLink = document.createElement('a');
-        pageLink.className = `page-link${i === currentPage ? ' active' : ''}`;
-    
-        pageLink.innerHTML = i;
-        pageLink.addEventListener('click', () => {
-          currentPage = i;
-          // Call your API function with the new currentPage value
-          // Replace this line with your Axios code
-          console.log(`Fetching data for page ${currentPage}`);
-          fetchData(currentPage, limit.value, totalItems, totalPages)
-        });
-        pageItem.appendChild(pageLink);
-        paginationElement.appendChild(pageItem);
+      // Calculate the range of pages to display (maximum of 4)
+      const startPage = Math.max(1, currentPage - 1);
+      const endPage = Math.min(totalPages, startPage + 3);
+
+      for (let i = startPage; i <= endPage; i++) {
+          const pageItem = document.createElement('li');
+          pageItem.className = 'page-item';
+          const pageLink = document.createElement('a');
+          pageLink.className = `page-link${i === currentPage ? ' active' : ''}`;
+
+          pageLink.innerHTML = i;
+          // Add click event listener to handle page navigation
+          pageLink.addEventListener('click', () => {
+              currentPage = i;
+              fetchData(currentPage, limit.value, totalItems, totalPages);
+          });
+
+          pageItem.appendChild(pageLink);
+          paginationElement.appendChild(pageItem);
       }
 
       const nextPage = document.createElement('li');
@@ -73,19 +74,19 @@ function generatePagination(currentPage, totalPages) {
       const nextLink = document.createElement('a');
       nextLink.className = 'page-link page-link-icon';
 
-      nextLink.innerHTML = '<i data-feather="chevron-right"></i>';
-    //   pageLink.addEventListener('click', () => {
-    //     currentPage = currentPage + 1;
-    //     // Call your API function with the new currentPage value
-    //     // Replace this line with your Axios code
-    //     console.log(`Fetching data for page ${currentPage}`);
-    //     fetchData(currentPage, limit, totalItems, totalPages)
-    //   });
+      nextLink.innerHTML = '<i data-feather="chevron-left"></i>';
+      // Add click event listener to handle next page navigation
+      nextLink.addEventListener('click', () => {
+          currentPage = Math.min(currentPage + 1, totalPages); // Ensure currentPage doesn't exceed totalPages
+          fetchData(currentPage, limit.value, totalItems, totalPages);
+      });
+
       nextPage.appendChild(nextLink);
       paginationElement.appendChild(nextPage);
-    }
-}
 
+      feather.replace();
+  }
+}
 
 // Event listeners for pagination
 document.getElementById('prevPage').addEventListener('click', () => {

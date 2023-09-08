@@ -18,3 +18,10 @@
     justify-content: center;
     height: 100vh;
 }
+
+#select-limit{
+    width: unset;
+    display: grid;
+    float: left;
+    padding-left: 95px;
+}
