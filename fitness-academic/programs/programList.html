@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="../../assets/css/dashforge.demo.css">
     <link href="../layout/layout.css" rel="stylesheet">
     <link href="./styles.css" rel="stylesheet">
+    <link href="../styles/filterModal.css" rel="stylesheet">
 
     <script src="../layout/head.js"></script>
     <link href="./styles/programList.css" rel="stylesheet">
@@ -57,7 +58,7 @@
             <a href="#modal7" class="col-sm btn btn-outline-light btn-sm mg-l-10 yekan-bakh" data-bs-toggle="modal">
               <i data-feather="filter"></i> فیلتر
             </a> 
-            <button type="button" class="col-sm-3 btn btn-sm mg-r-10 btn-outline-light yekan-bakh"> 
+            <button type="button" id="downloadCsvButton" class="col-sm-3 btn btn-sm mg-r-10 btn-outline-light yekan-bakh"> 
               <i data-feather="download"></i> دانلود فایل CSV
             </button>
           </div>
@@ -156,11 +157,44 @@
             </button>
           </div>
           <div class="modal-body">
-            <p class="mg-b-0">It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. T</p>
+
+            <div class="container">
+              <!-- Row 1 -->
+              <div class="row custom-row">
+                  <div class="col-md-1">
+                      <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="checkbox1">
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <label class="form-check-label" for="checkbox1">Title 1</label>
+                  </div>
+                  <div class="col-md-7">
+                      <input type="text" class="form-control" placeholder="Input Text 1">
+                  </div>
+              </div>
+      
+              <!-- Row 2 -->
+              <div class="row custom-row">
+                  <div class="col-md-1">
+                      <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="checkbox2">
+                      </div>
+                  </div>
+                  <div class="col-md-4">
+                      <label class="form-check-label" for="checkbox2">Title 2</label>
+                  </div>
+                  <div class="col-md-7">
+                      <input type="text" class="form-control" placeholder="Input Text 2">
+                  </div>
+              </div>
+      
+              <!-- Add more rows here -->
+      
+          </div>          
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-secondary tx-13" data-bs-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary tx-13">Save changes</button>
+            <button type="button" class="btn btn-primary tx-13 w-100">فیلتر</button>
           </div>
         </div>
       </div>
@@ -194,8 +228,9 @@
     <script src="../plugins/jalali-date.js"></script>
     <script src="../tools/pagination.js"></script>
     <script src="../../env.js"></script>
+    <script src="../scripts/filterModal.js"></script>
+    <script src="../scripts/exportCsv.js"></script>
     <script src="./scripts/programList.js"></script>
-
 
   </body>
 </html>

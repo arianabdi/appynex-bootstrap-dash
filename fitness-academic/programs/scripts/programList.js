@@ -1,5 +1,5 @@
 
-
+let data = [];
 
 function toJalali(gregorianDate){
     return moment(gregorianDate, 'YYYY-MM-DD').format('jYYYY/jMM/jDD');
@@ -50,8 +50,9 @@ function fetchData(page, limit, totalPages){
     axios.get(`http://localhost:30112/api/programs?page=${page}&limit=${limit}`)
     .then(response => {
         console.log('response', response);
-        const data = response.data.data.programs; // Assuming data is an array of objects
+        data = response.data.data.programs; // Assuming data is an array of objects
         _renderItem(data); // Populate the table with the fetched data
+       
 
         totalItems = response.data.data.totalItems;
         totalPages = Math.ceil(totalItems / limit);
@@ -65,8 +66,17 @@ function fetchData(page, limit, totalPages){
 }
 
 
+
+
 document.addEventListener("DOMContentLoaded", () => {
     const userTableBody = document.getElementById("userTableBody");
-    
     fetchData(page, limit.value, totalItems, totalPages)
+});
+
+document.getElementById('downloadCsvButton').addEventListener('click', ()=>{
+    console.log('downloadCsvButton')
+
+    const csvData = convertToCSV(data);
+    const fileName = 'data.csv';
+    downloadCSV(csvData, fileName);
 });
