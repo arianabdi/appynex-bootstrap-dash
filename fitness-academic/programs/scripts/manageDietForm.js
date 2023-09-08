@@ -4,7 +4,23 @@ var dietFormData = [];
 
 
 
-  
+function addNewDietSuggestion(index){
+    console.log('index', index)
+    var newDietSuggestionItem = `
+          <div class="row">
+            <div class="col-sm-12 order-2 yekan-bakh">${index}</div>
+            <div class="col-sm-12 order-3 d-flex justify-content-end">
+              <input type="text" class="form-control yekan-bakh suggestion" data-index="${index}" data-label="suggestion" placeholder="پیشنهاد">
+              <a class="col-sm btn btn-outline-light mg-r-5 remove-suggestion-button"  data-index="${index}">
+                <i data-feather="x" class="sz-20"></i>
+              </a> 
+            </div>
+          </div>
+    `
+
+    return newDietSuggestionItem
+  }
+
 
 
 // Function to add a new item to the form
@@ -69,19 +85,14 @@ function addItemToDiet(index) {
           <div class="row mg-t-20">
             <div class="col-sm-8 order-2 yekan-bakh mg-t-5">موارد پیشنهادی</div>
             <div class="col-sm order-3 d-flex justify-content-end">
-              <a class="col-sm btn btn-outline-light yekan-bakh btn-sm">
+              <a class="col-sm btn btn-outline-light yekan-bakh btn-sm add-suggestion-button"  data-index="${index}">
                 <i data-feather="plus"></i> افزودن پیشنهاد جدید
               </a> 
             </div>
           </div>
 
-          <div id="suggestions-container">
-            <div class="row">
-              <div class="col-sm-12 order-2 yekan-bakh">1</div>
-              <div class="col-sm-12 order-3 d-flex justify-content-end">
-                <input type="text" class="form-control yekan-bakh" data-index="1" data-label="suggestions" placeholder="Input box">
-              </div>
-            </div>
+          <div id="suggestions-container"  data-index="${index}" data-label="suggestion-container" >
+            ${addNewDietSuggestion(0)}
           </div>
 
         </div>
@@ -109,16 +120,6 @@ function addItemToDiet(index) {
 }
 
 
-function addNewDietSuggestion(index){
-    var newDietSuggestionItem = `
-          <div class="row">
-            <div class="col-sm-12 order-2 yekan-bakh">${index}</div>
-            <div class="col-sm-12 order-3 d-flex justify-content-end">
-              <input type="text" class="form-control yekan-bakh" placeholder="پیشنهاد">
-            </div>
-          </div>
-    `
-  }
 
 
 function removeItemFromDiet(index) {
@@ -150,13 +151,28 @@ form.addEventListener("change", function(event) {
   let index = event.target.dataset.index;
   let label = event.target.dataset.label;
 
-  dietFormData[index][label] = value;
 
+
+  
+
+  // var dietItem = $(this).closest('.diet-item');
 
   if(label === "title"){
     //change its title
     var title = document.getElementById(`diet-title-${index}`);
     title.textContent = dietFormData[index][label];
+    dietFormData[index][label] = value;
+
+  }else if(label === "suggestion"){
+    let parentElement = event.target.closest('.diet-item');
+    let parentIndex = parentElement.dataset.index;
+    let dataIndex = event.target.dataset.index;
+    console.log('change', label, 'parentIndex', parentIndex, 'dataIndex', dataIndex);
+    dietFormData[parentIndex]["suggestions"][dataIndex] = value;
+
+
+  }else{
+    dietFormData[index][label] = value;
   }
 
 });
@@ -176,4 +192,18 @@ $("#dietContainer").on("click", ".remove-btn", function() {
   var dataIndex = $(this).data("index");
   removeItemFromDiet(dataIndex);
 });
+
+
+// add new suggestion to specific diet-item
+$('#dietContainer').on('click', '.add-suggestion-button', function() {
+ 
+    // var dietItem = $(this).closest('.diet-item'); // Find the parent diet-item
+    var dataIndex = $(this).data("index");
+    console.log('add', dataIndex,)
+    var suggestionContainer = $('[data-index="' + dataIndex + '"][data-label="suggestion-container"]');
+    suggestionContainer.append(addNewDietSuggestion(dietFormData[dataIndex]['suggestions'].length));
+    dietFormData[dataIndex]['suggestions'].push('')
+    feather.replace();
+
+  });
 

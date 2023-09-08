@@ -166,12 +166,6 @@ form.addEventListener("change", function(event) {
     let label = event.target.dataset.label;
 
     exercisesFormData[index][label] = value;
-
-    if(label === "title"){
-      //change its title
-      var title = document.getElementById(`exercise-title-${index}`);
-      title.textContent = dietFormData[index][label];
-    }
 });
 
 
