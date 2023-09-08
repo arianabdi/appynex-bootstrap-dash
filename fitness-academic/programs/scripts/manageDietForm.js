@@ -120,7 +120,7 @@ function addItemToDiet(index) {
 }
 
 
-
+addItemToDiet(0)
 
 function removeItemFromDiet(index) {
     // Remove the item from the list (e.g., using jQuery)

@@ -26,7 +26,7 @@ function addItemToExercise(index) {
           aria-expanded="false" 
           aria-controls="collapseExample"
         >
-          <div class="col-sm yekan-bakh indexer">${index}</div>
+          <div class="col-sm yekan-bakh indexer">${index}. ${exercisesFormData[index] ? exercisesFormData[index]['sets'] : 'تعریف نشده'}</div>
         </a>
       </div>
       <div class="col-sm d-flex justify-content-end">
@@ -135,6 +135,8 @@ function addItemToExercise(index) {
   
     
   }
+
+addItemToExercise(0)
 
 function removeItemFromExercise(index) {
   // Remove the item from the list (e.g., using jQuery)
