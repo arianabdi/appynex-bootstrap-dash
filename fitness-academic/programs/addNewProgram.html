@@ -189,91 +189,86 @@
 
 
               <div class="tab-pane fade" id="diet" role="tabpanel" aria-labelledby="diet-tab">
-                <div class="card card-body mg-b-10"> 
-                  <div class="row">
-                    <div class="col-sm">
-                      <a data-bs-toggle="collapse" 
-                        href="#collapseExample" 
-                        role="button" 
-                        aria-expanded="false" 
-                        aria-controls="collapseExample"
-                      >
-                        <div class="col-sm ">1. asdfaksldfjasdfkasldf</div>
-                      </a>
-                    </div>
-                    <div class="col-sm d-flex justify-content-end">
-                      <a href="">
-                        <i data-feather="edit-2" class="sz-15 mg-l-20"></i>
-                      </a>
-                      <a  href="">
-                        <i data-feather="x" class="sz-20 mg-l-20"></i>
-                      </a>
-                    </div>
-                    
-                  </div>
-                  <div class="collapse mg-t-5 pd-t-20" id="collapseExample">
-                  
-                    <div class="row mg-b-10">
-                      <div class="col-sm order-2">
-                        <div class="row">
-                          <div class="col-sm-12 order-2 yekan-bakh">عنوان</div>
-                          <div class="col-sm-12 order-3 d-flex justify-content-end">
-                            <input type="text" class="form-control" placeholder="Input box">
-                          </div>
+
+                <form id="dietForm" >
+                  <div id="dietContainer">
+                    <div class="card card-body mg-b-10"> 
+                      <div class="row">
+                        <div class="col-sm">
+                          <a data-bs-toggle="collapse" 
+                            href="#collapseExample" 
+                            role="button" 
+                            aria-expanded="false" 
+                            aria-controls="collapseExample"
+                          >
+                            <div class="col-sm ">1. asdfaksldfjasdfkasldf</div>
+                          </a>
                         </div>
+                        <div class="col-sm d-flex justify-content-end">
+                          <a href="">
+                            <i data-feather="edit-2" class="sz-15 mg-l-20"></i>
+                          </a>
+                          <a  href="">
+                            <i data-feather="x" class="sz-20 mg-l-20"></i>
+                          </a>
+                        </div>
+                        
                       </div>
-                      <div class="col-sm order-2">
-                        <div class="row">
-                          <div class="col-sm-12 order-2 yekan-bakh">نوع</div>
-                          <div class="col-sm-12 order-3 d-flex justify-content-end">
-                            <select class="form-select yekan-bakh" id="select-limit">
-                              <option class="yekan-bakh" value="meal">وعده غذایی</option>
-                              <option class="yekan-bakh" value="supplement"selected>مکمل</option>
-                              <option class="yekan-bakh" value="limitation">محدودیت</option>
-                            </select>
+                      <div class="collapse mg-t-5 pd-t-20" id="collapseExample">
+                      
+                        <div class="row mg-b-10">
+                          <div class="col-sm order-2">
+                            <div class="row">
+                              <div class="col-sm-12 order-2 yekan-bakh">عنوان</div>
+                              <div class="col-sm-12 order-3 d-flex justify-content-end">
+                                <input type="text" class="form-control" placeholder="Input box">
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-sm order-2">
+                            <div class="row">
+                              <div class="col-sm-12 order-2 yekan-bakh">نوع</div>
+                              <div class="col-sm-12 order-3 d-flex justify-content-end">
+                                <select class="form-select yekan-bakh" id="select-limit">
+                                  <option class="yekan-bakh" value="meal">وعده غذایی</option>
+                                  <option class="yekan-bakh" value="supplement"selected>مکمل</option>
+                                  <option class="yekan-bakh" value="limitation">محدودیت</option>
+                                </select>
+                              </div>
+                            </div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-  
-                    <div class="row mg-b-10">
-                      <div class="col-sm order-2">
-                        <div class="row mg-t-20">
-                          <div class="col-sm-8 order-2 yekan-bakh mg-t-5">موارد پیشنهادی</div>
-                          <div class="col-sm order-3 d-flex justify-content-end">
-                            <a class="col-sm btn btn-outline-light yekan-bakh btn-sm" data-bs-toggle="modal">
-                              <i data-feather="plus"></i> افزودن پیشنهاد جدید
-                            </a> 
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-sm-12 order-2 yekan-bakh">۱</div>
-                          <div class="col-sm-12 order-3 d-flex justify-content-end">
-                            <input type="text" class="form-control yekan-bakh" placeholder="Input box">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-sm-12 order-2 yekan-bakh">۱</div>
-                          <div class="col-sm-12 order-3 d-flex justify-content-end">
-                            <input type="text" class="form-control yekan-bakh" placeholder="Input box">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-sm-12 order-2 yekan-bakh">۱</div>
-                          <div class="col-sm-12 order-3 d-flex justify-content-end">
-                            <input type="text" class="form-control yekan-bakh" placeholder="Input box">
-                          </div>
-                        </div>
-                        <div class="row">
-                          <div class="col-sm-12 order-2 ">۱</div>
-                          <div class="col-sm-12 order-3 d-flex justify-content-end">
-                            <input type="text" class="form-control yekan-bakh" placeholder="Input box">
+      
+                        <div class="row mg-b-10">
+                          <div class="col-sm order-2">
+                            <div class="row mg-t-20">
+                              <div class="col-sm-8 order-2 yekan-bakh mg-t-5">موارد پیشنهادی</div>
+                              <div class="col-sm order-3 d-flex justify-content-end">
+                                <a class="col-sm btn btn-outline-light yekan-bakh btn-sm" data-bs-toggle="modal">
+                                  <i data-feather="plus"></i> افزودن پیشنهاد جدید
+                                </a> 
+                              </div>
+                            </div>
+    
+                            <div id="suggestions-container">
+    
+                              <div class="row">
+                                <div class="col-sm-12 order-2 yekan-bakh">1</div>
+                                <div class="col-sm-12 order-3 d-flex justify-content-end">
+                                  <input type="text" class="form-control yekan-bakh" placeholder="Input box">
+                                </div>
+                              </div>
+    
+                            </div>
+                            
+                            
+                          
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-                </div>
+                </form>
                 
                 
                 <div class="col-sm order-3 d-flex justify-content-end">
