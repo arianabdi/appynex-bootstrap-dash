@@ -157,44 +157,11 @@
             </button>
           </div>
           <div class="modal-body">
-
-            <div class="container">
-              <!-- Row 1 -->
-              <div class="row custom-row">
-                  <div class="col-md-1">
-                      <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="checkbox1">
-                      </div>
-                  </div>
-                  <div class="col-md-4">
-                      <label class="form-check-label" for="checkbox1">Title 1</label>
-                  </div>
-                  <div class="col-md-7">
-                      <input type="text" class="form-control" placeholder="Input Text 1">
-                  </div>
-              </div>
-      
-              <!-- Row 2 -->
-              <div class="row custom-row">
-                  <div class="col-md-1">
-                      <div class="form-check">
-                          <input class="form-check-input" type="checkbox" id="checkbox2">
-                      </div>
-                  </div>
-                  <div class="col-md-4">
-                      <label class="form-check-label" for="checkbox2">Title 2</label>
-                  </div>
-                  <div class="col-md-7">
-                      <input type="text" class="form-control" placeholder="Input Text 2">
-                  </div>
-              </div>
-      
-              <!-- Add more rows here -->
-      
-          </div>          
+            <div class="container " id="modal-container">
+            </div>          
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary tx-13 w-100">فیلتر</button>
+            <button type="button" class="btn btn-primary tx-13 w-100 yekan-bakh" id="filter-button">فیلتر</button>
           </div>
         </div>
       </div>
@@ -224,7 +191,7 @@
     </script>
     <script src="../layout/layout.js"></script>
     <script src="../layout/loader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../plugins/axios.js"></script>
     <script src="../plugins/jalali-date.js"></script>
     <script src="../tools/pagination.js"></script>
     <script src="../../env.js"></script>
