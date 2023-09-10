@@ -4,7 +4,7 @@ let filterParams =  '';
 let filterItems = [
     {
         title: "نوع برنامه",
-        slug: 'type',
+        slug: 'packageId',
         type: "select",
         options: [
             {label: 'حرفه ای', value: '64ef8b54e632619c304525a6'},
@@ -32,7 +32,7 @@ let filterItems = [
         title: "نام کاربر",
         slug: 'full_name',
         type: "text",
-        value: "333",
+        value: "",
         selected: false
     },
 ]
@@ -47,7 +47,7 @@ let filterItems = [
 function ConvertFilterObjectToUrlParam(obj){
     const queryParams = [];
     filterItems.forEach(item => {
-        if (item.value) {
+        if (item.selected) {
             queryParams.push(`${item.slug}=${item.value}`);
         }
     });
@@ -94,7 +94,7 @@ function FilterQueryItem(title, slug, type, options, value, selected){
         <div class="row custom-row ${selected ? 'checked' : ''}">
             <div class="col-md-1">
                 <div class="form-check">
-                    <input class="form-check-input" type="checkbox" ${selected ? 'checked' : ''} id="checkbox1">
+                    <input class="form-check-input" type="checkbox" ${selected ? 'checked' : ''} data-index="2" data-label="${slug}" id="checkbox1">
                 </div>
             </div>
             <div class="col-md-4">
@@ -133,7 +133,14 @@ loadFilterModal()
 
 // Function to print the form data as a JSON object
 function applyFilter() {
-    console.log('applyFilter', ConvertFilterObjectToUrlParam(filterItems))
+    console.log('xxxxxxxxxx', filterItems)
+    const filter = ConvertFilterObjectToUrlParam(filterItems);
+    fetchData( {
+        page: page, 
+        limit: limit.value, 
+        totalPages: totalPages,
+        filter: filter
+    })
   }
   
   
@@ -151,7 +158,8 @@ function applyFilter() {
   
   
     filterItems.map(item => {
-        if(item.slug === label){
+        if(item.slug === label && index === "1"){
+            console.log('change', item);
             item.value = value;
         }
     })
@@ -162,7 +170,21 @@ function applyFilter() {
 
 // JavaScript to toggle row background color on checkbox change
 document.querySelectorAll('.form-check-input').forEach(function(checkbox) {
-    checkbox.addEventListener('change', function() {
+    checkbox.addEventListener('change', function(event) {
+        let label = event.target.dataset.label;
+        let index = event.target.dataset.index;
+        console.log('lable', label, 'index', index);
+
+        filterItems.map(item => {
+            if(item.slug === label  && index === "2"){
+                if (this.checked) {
+                    item.selected = true
+                } else {
+                    item.selected = false
+                }
+            }
+        })
+        
         const row = this.closest('.custom-row');
         if (this.checked) {
             row.classList.add('checked');

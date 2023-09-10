@@ -71,33 +71,22 @@ function _renderItem(data) {
 }
 
 
-function fetchData(page, limit, totalPages){
-    // Fetch data using Axios
-    axios.get(`http://localhost:30112/api/programs?page=${page}&limit=${limit}`)
-    .then(response => {
-        data = response.data.data.programs; // Assuming data is an array of objects
-        _renderItem(data); // Populate the table with the fetched data
-       
-
-        totalItems = response.data.data.totalItems;
-        totalPages = Math.ceil(totalItems / limit);
-        generatePagination(page, totalPages);
-
-    })
-    .catch(error => {
-        console.error('Error fetching data:', error);
-    });
-}
 
 
 
 
 document.addEventListener("DOMContentLoaded", () => {
     const userTableBody = document.getElementById("userTableBody");
-    fetchData(page, limit.value, totalItems, totalPages)
+    // fetchData() is located at "./scripts/api.js"
+    fetchData( {
+        page: page, 
+        limit: limit.value, 
+        totalPages: totalPages,
+    })
 });
 
 document.getElementById('downloadCsvButton').addEventListener('click', ()=>{
+    // convertToCSV() and downloadCSV() is located at "../scripts/exportCsv.js"
     const csvData = convertToCSV(data);
     const fileName = 'data.csv';
     downloadCSV(csvData, fileName);

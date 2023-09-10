@@ -1,5 +1,6 @@
 const config = [
     {
+        name: 'program_2',
         url: `http://localhost:30112/api/programs`,
         grid:{
             table: [
