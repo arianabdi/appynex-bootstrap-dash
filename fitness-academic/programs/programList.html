@@ -77,13 +77,13 @@
                   </tr>
                 </thead>
                 <tbody id="tableBody">
-                  <tr>
+                  <!-- <tr>
                     <th scope="row">1</th>
                     <td>Adrian Monino</td>
                     <td>Front-End Engineer</td>
                     <td>Computer Science</td>
                     <td>$120,000</td>
-                  </tr>
+                  </tr> -->
                 </tbody>
               </table>
             </div><!-- table-responsive -->
@@ -157,8 +157,11 @@
             </button>
           </div>
           <div class="modal-body">
-            <div class="container " id="modal-container">
-            </div>          
+            <form id="filterForm">
+              <div class="container" id="modal-container">
+
+              </div>      
+            </form>    
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary tx-13 w-100 yekan-bakh" id="filter-button">فیلتر</button>
@@ -189,6 +192,7 @@
 
       });
     </script>
+    <script src="../translate/translate.js"></script>
     <script src="../layout/layout.js"></script>
     <script src="../layout/loader.js"></script>
     <script src="../plugins/axios.js"></script>
@@ -197,7 +201,7 @@
     <script src="../../env.js"></script>
     <script src="../scripts/filterModal.js"></script>
     <script src="../scripts/exportCsv.js"></script>
-    <script src="./scripts/programList.js"></script>
+    <script src="./scripts/tableLoader.js"></script>
 
   </body>
 </html>

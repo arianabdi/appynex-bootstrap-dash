@@ -18,11 +18,6 @@ let filterItems = [
         slug: 'status',
         type: "select",
         options: [
-            // UNPAID = 'unpaid', // پرداخت نشده
-            // FILL_INFO = 'fill_info', // تکمیل اطلاعات
-            // PENDING = 'pending', // در حال آماده سازی
-            // ACTIVE = 'active', // فعال
-            // EXPIRED = 'expired'  //منقضی شده
             
             {label: 'در انتظار پرداخت', value: 'unpaid'},
             {label: 'تکمیل فرم', value: 'fill_info'},
@@ -61,15 +56,15 @@ function ConvertFilterObjectToUrlParam(obj){
 
 
 
-function FilterQueryInputSelector(type, options){
+function FilterQueryInputSelector(type, options, slug){
     console.log('options', options);
     switch(type){
         case 'text':
-            return `<input type="text" class="form-control" placeholder="">` ;
+            return `<input type="text" class="form-control yekan-bakh" placeholder=""  data-index="1" data-label="${slug}">` ;
             break;
 
         case 'date':
-            return `<input type="text" class="form-control" placeholder="">` ;
+            return `<input type="text" class="form-control yekan-bakh" placeholder=""  data-index="1" data-label="${slug}">` ;
             break;
             
         case 'select':
@@ -79,7 +74,7 @@ function FilterQueryInputSelector(type, options){
                 items += `<option class="yekan-bakh" value="${option.value}">${option.label}</option>\n`
             });
             return `
-            <select class="form-select yekan-bakh exerciseId w-100" data-index="" data-label="exerciseId" id="select-limit">
+            <select class="form-select yekan-bakh w-100"   data-index="1" data-label="${slug}">
                 ${items}
             </select>
             ` ;
@@ -92,7 +87,7 @@ function FilterQueryInputSelector(type, options){
 
 
 
-function FilterQueryItem(title, type, options, value, selected){
+function FilterQueryItem(title, slug, type, options, value, selected){
     const container = document.createElement('div');
     
     container.innerHTML = `
@@ -106,7 +101,7 @@ function FilterQueryItem(title, type, options, value, selected){
                 <label class="form-check-label yekan-bakh" for="checkbox1">${title}</label>
             </div>
             <div class="col-md-7">
-                ${FilterQueryInputSelector(type, options)}
+                ${FilterQueryInputSelector(type, options, slug)}
             </div>
         </div>
     `
@@ -124,7 +119,7 @@ function loadFilterModal(){
     
     filterItems.forEach(item => {
         console.log('each', item);
-        const component = FilterQueryItem(item.title, item.type, item.options, '', item.selected);
+        const component = FilterQueryItem(item.title, item.slug, item.type, item.options, '', item.selected);
         modalContainer.appendChild(component);
     });
 }
@@ -147,6 +142,21 @@ function applyFilter() {
   document.getElementById('filter-button').addEventListener('click', applyFilter);
 
 
+  // Detect all changes in this form
+  var form = document.getElementById("filterForm");
+  form.addEventListener("change", function(event) {
+    let value = event.target.value;
+    let index = event.target.dataset.index;
+    let label = event.target.dataset.label;
+  
+  
+    filterItems.map(item => {
+        if(item.slug === label){
+            item.value = value;
+        }
+    })
+    
+  });
 
 
 
