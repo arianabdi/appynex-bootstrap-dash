@@ -10,7 +10,7 @@ let filterItems = [
             {label: 'حرفه ای', value: '64ef8b54e632619c304525a6'},
             {label: 'مبتدی', value: '64ef8b61e632619c304525a9'},
         ],
-        value: "1",
+        value: "",
         selected: false
     },
     {
@@ -25,8 +25,8 @@ let filterItems = [
             {label: 'فعال', value: 'active'},
             {label: 'منقضی شده', value: 'expired'},
         ],
-        value: "11",
-        selected: true
+        value: "",
+        selected: false
     },
     {
         title: "نام کاربر",

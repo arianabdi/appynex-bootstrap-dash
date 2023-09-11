@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
 
-    <title>برنامه ها</title>
+    <title>تمرین ها</title>
     <link rel="stylesheet" href="../../assets/css/dashforge.css">
     <link rel="stylesheet" href="../../assets/css/dashforge.demo.css">
     <link href="../layout/layout.css" rel="stylesheet">
@@ -53,6 +53,11 @@
         float: right !important;
         padding-left: var(--bs-breadcrumb-item-padding-x) !important;
         padding-right: unset !important;
+      }
+
+      .table-responsive .table th,
+      .table-responsive .table td{
+          font-family: yekan-bakh;
       }
      </style>
       <div class="content content-components">
@@ -119,6 +124,7 @@
 
     
 
+    <!-- Filter Modal -->
     <div class="modal" id="modal7" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel7" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content tx-14">
@@ -137,6 +143,35 @@
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-primary tx-13 w-100 yekan-bakh" id="filter-button">فیلتر</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <!-- Yes Or No Modal -->
+    <div class="modal" id="modal18" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel8" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content tx-14">
+          <div class="modal-header">
+            <h6 class="modal-title" id="exampleModalLabel8">حذف رکورد</h6>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true"></span>
+            </button>
+          </div>
+
+          <div class="modal-body">
+            <form id="filterForm">
+              <div class="container" id="modal-container">
+                  <h2>آیا از حذف این رکورد مطمئن هستید؟</h2>
+                  <h6>با حذف این رکورد اطلاعات قابل بازگشت نیستند. لطفا قبلا از حذف از حذف کردن آیتم اطمینان کامل حاصل کنید. </h6>
+              </div>      
+            </form>    
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-light tx-13 yekan-bakh" data-bs-dismiss="modal" >منصرف شدم</button>
+            <button type="button" class="btn btn-danger tx-13 yekan-bakh" id="delete-item">حذف رکورد</button>
           </div>
         </div>
       </div>

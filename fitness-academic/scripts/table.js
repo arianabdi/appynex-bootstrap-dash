@@ -35,6 +35,14 @@ function _renderItem(data) {
                     row.innerHTML += `<td>${toJalali(item[el.slug])}</td>`; // if you need jalali format 
                 }else if(el.useTranslate === true){
                     row.innerHTML += `<td>${translate(item[el.slug])}</td>`; // if you need to translate a value add them into "../translate/translate.js"
+                }else if(el.useButton === true){
+                    row.innerHTML += `<td><a 
+                            ${el.isDeleteButton ? `href="#modal18" data-bs-toggle="modal" data-index="${item['_id']}" data-label="delete"` : ''}
+                            type="button" 
+                            class="btn btn-${el.color ? el.color : 'primary'} ${el.isDeleteButton ? 'delete-item' : ''} btn-xs w-100 yekan-bakh"
+                        >
+                            ${el.title} 
+                        </a></td>`; // if you need to use button to perform an action
                 }else{
                     row.innerHTML += `<td>${item[el.slug]}</td>`;
                 }
@@ -79,3 +87,15 @@ document.getElementById('downloadCsvButton').addEventListener('click', ()=>{
     const fileName = 'data.csv';
     downloadCSV(csvData, fileName);
 });
+
+let itemId = '';
+$("#tableBody").on("click", ".delete-item", function() {
+    itemId = $(this).data("index");
+});
+
+document.getElementById('delete-item').addEventListener('click', ()=>{
+    console.log('itemId', itemId)
+    deleteItem({exerciseId: itemId});
+    
+});
+
