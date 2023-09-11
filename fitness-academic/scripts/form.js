@@ -129,17 +129,24 @@ function submitForm() {
     let object = {};
     formItems.map(rows => {
         rows.map(item => {
+
             object[item.slug] = item.value; 
+
             if(item.regex){
                 if(!item.regex.test(item.value)){
                     alert(item.alert);
                     return;
                 }
             }
+
+            if(item.isRequired){
+                if(item.value === ""){
+                    alert(`Please fill ${item.slug} field!`)
+                }
+            }
         })
     })
-    console.log(object)
-    // newItem(object);
+    newItem(object);
   }
   
   

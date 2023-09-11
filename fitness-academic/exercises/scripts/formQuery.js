@@ -3,12 +3,13 @@ const heading = {
     description: "در بخش باید متناسب با اطلاعات وارد شده توسط کاربر، برنامه تمرینی و غذایی ایجاد و ثبت شوددر بخش باید متناسب با اطلاعات وارد شده توسط کاربر، برنامه تمرینی و غذایی ایجاد و ثبت شوددر بخش باید متناسب با اطلاعات وارد شده توسط کاربر، برنامه تمرینی و غذایی ایجاد و ثبت شود"
 }
 
+
 let formItems = [
     [
 
         {
             title: "عنوان تمرین",
-            slug: 'title',
+            slug: 'name',
             type: "text",
             regex: /^[A-Za-z\u0600-\u06FF\s]+$/,
             alert: 'Title should contain only letters and spaces with no underline or numbers.',

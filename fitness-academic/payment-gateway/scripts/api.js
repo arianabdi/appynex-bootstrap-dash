@@ -4,9 +4,9 @@ function fetchData({page, limit, totalPages, filter}){
     // Fetch data using Axios
 
 
-    axios.get(`${baseUrl}/exercise?page=${page}&limit=${limit}${filter ? '&'+filter : ''}`)
+    axios.get(`${baseUrl}/package?page=${page}&limit=${limit}${filter ? '&'+filter : ''}`)
     .then(response => {
-        data = response.data.data.exercises; // Assuming data is an array of objects
+        data = response.data.data.packages; // Assuming data is an array of objects
         console.log('resp',response.data.data )
         _renderItem(data); // Populate the table with the fetched data
        
@@ -23,16 +23,16 @@ function fetchData({page, limit, totalPages, filter}){
 
 function newItem(body){
 
-    axios.post(`${baseUrl}/exercise`, body)
+    axios.post(`${baseUrl}/package`, body)
     .then(response => {
         
         console.log('newItem', response)
         // Check if the request was successful
       if (response.status === 200) {
-        // Redirect to the "exercise list" page upon success
-        window.location.href = '../exercise/table.html'; // Replace with your actual URL
+        // Redirect to the "package list" page upon success
+        window.location.href = '../package/table.html'; // Replace with your actual URL
       } else {
-        alert('Failed to create the exercise.'); // Handle other status codes if needed
+        alert('Failed to create the package.'); // Handle other status codes if needed
       }
     })
     .catch(error => {
@@ -40,8 +40,8 @@ function newItem(body){
     });
 }
 
-function deleteItem({exerciseId}){
-    axios.delete(`${baseUrl}/package/${exerciseId}`)
+function deleteItem({packageId}){
+    axios.delete(`${baseUrl}/package/${packageId}`)
     .then(response => {
         console.log('deleteItem', response)
         if(response.status === 200){
