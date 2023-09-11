@@ -1,7 +1,7 @@
 
 
 
-function InputSelector(type, options, slug){
+function InputSelector(type, options, slug, row){
 
     console.log('InputSelector', type, options, slug)
     
@@ -15,7 +15,7 @@ function InputSelector(type, options, slug){
             break;
 
         case 'textarea':
-            return ` <textarea  id="${slug}" class="form-control yekan-bakh" rows="4" data-index="1" data-label="${slug} placeholder="توضیحات"></textarea>` ;
+            return ` <textarea class="form-control yekan-bakh" rows="4" data-index="1" data-label="${slug}"  placeholder="توضیحات"></textarea>` ;
             break;
            
 
@@ -42,13 +42,13 @@ function row(items){
     const container = document.createElement('div');
     container.classList.add(`row`)
   
-    items.forEach(item => {
+    items.forEach((item, index) => {
         container.innerHTML += `
         <div class="col-sm order-2">
             <div class="row">
             <div class="col-sm-12 order-2 yekan-bakh">${item.title}</div>
             <div class="col-sm-12 order-3 d-flex justify-content-end">
-                ${InputSelector(item.type, item.options, item.slug)}
+                ${InputSelector(item.type, item.options, item.slug, index)}
             </div>
             </div>
         </div>`;
@@ -88,10 +88,8 @@ function loadForm(){
         modalContainer.appendChild(br)
     });
 
-
-
     const button = document.createElement('div');
-    button.innerHTML = `<button type="button" id="submit-btn" class="btn btn-primary w-100 yekan-bakh">ایجاد تمرین جدید</button>`
+    button.innerHTML = `<button type="button" id="submit" class="btn btn-primary w-100 yekan-bakh">ایجاد تمرین جدید</button>`
     modalContainer.appendChild(button)
 }
 
@@ -104,20 +102,50 @@ loadForm()
 
 
 // Detect all changes in this form
-var form = document.getElementById("filterForm");
+var form = document.getElementById("form");
 form.addEventListener("change", function(event) {
     let value = event.target.value;
     let index = event.target.dataset.index;
     let label = event.target.dataset.label;
 
 
-    filterItems.map(item => {
-        if(item.slug === label && index === "1"){
-            item.value = value;
-        }
+
+    console.log('chagne', label, value);
+    formItems.map(rows => {
+        rows.map(item => {
+            if(item.slug === label){
+                item.value = value;
+            }
+        })
     })
 
 });
+
+
+// Function to print the form data as a JSON object
+function submitForm() {
+  
+
+    let object = {};
+    formItems.map(rows => {
+        rows.map(item => {
+            object[item.slug] = item.value; 
+            if(item.regex){
+                if(!item.regex.test(item.value)){
+                    alert(item.alert);
+                    return;
+                }
+            }
+        })
+    })
+    console.log(object)
+    // newItem(object);
+  }
+  
+  
+  
+  // Event listener for the "Print Data" button
+  document.getElementById('submit').addEventListener('click', submitForm);
 
 
 

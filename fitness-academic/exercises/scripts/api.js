@@ -19,9 +19,26 @@ function fetchData({page, limit, totalPages, filter}){
     });
 }
 
+function newItem(body){
+
+    axios.post(`http://localhost:30112/api/exercise`, body)
+    .then(response => {
+        
+        console.log('newItem', response)
+        // Check if the request was successful
+      if (response.status === 200) {
+        // Redirect to the "exercise list" page upon success
+        window.location.href = '../exercise/table.html'; // Replace with your actual URL
+      } else {
+        alert('Failed to create the exercise.'); // Handle other status codes if needed
+      }
+    })
+    .catch(error => {
+        console.error('Error fetching data:', error);
+    });
+}
 
 function deleteItem({exerciseId}){
-    
     axios.delete(`http://localhost:30112/api/exercise/${exerciseId}`)
     .then(response => {
         console.log('deleteItem', response)

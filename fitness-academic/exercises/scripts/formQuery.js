@@ -10,6 +10,8 @@ let formItems = [
             title: "عنوان تمرین",
             slug: 'title',
             type: "text",
+            regex: /^[A-Za-z\u0600-\u06FF\s]+$/,
+            alert: 'Title should contain only letters and spaces with no underline or numbers.',
             value: "",
         },
         
@@ -17,6 +19,8 @@ let formItems = [
             title: "شناسه تمرین",
             slug: 'slug',
             type: "text",
+            regex: /^[A-Za-z0-9_]+$/,
+            alert: 'Slug should contain only letters, numbers, and underscores.',
             value: "",
         },
     ],
@@ -34,7 +38,7 @@ let formItems = [
         },
         {
             title: "دسته بندی تمرین",
-            slug: 'category',
+            slug: 'categoryId',
             type: "select",
             options: [
                 {label: 'بازو', value: '6489c0bae32a24bcc407357f'},
