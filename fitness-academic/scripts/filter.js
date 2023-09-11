@@ -87,6 +87,7 @@ loadFilterModal()
 // Function to print the form data as a JSON object
 function applyFilter() {
     filter = ConvertFilterObjectToUrlParam(filterItems);
+    page=1;
     //this function comes from "api.js"
     fetchData( {
         page: page, 

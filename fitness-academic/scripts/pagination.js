@@ -9,10 +9,14 @@ let totalPages = 1; // Initially set to 1
 function handleSelectLimitChange(){
     const selectBox = document.getElementById('select-limit');
     const selectedValue = selectBox.value;
-    
+    page=1;
     // Do something with the selected value here
-    console.log('Selected Value:', selectedValue);
-    fetchData(page, selectBox.value, totalItems, totalPages)
+    fetchData({
+        page: page,
+        limit: selectBox.value,
+        totalPages: totalPages,
+        filter: filter
+      });
   
 }
 
