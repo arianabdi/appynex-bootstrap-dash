@@ -1,28 +1,3 @@
-const tableStructure = [
-    {
-        title: "شناسه",
-        slug: '_id',
-    },
-    {
-        title: "نوع برنامه",
-        slug: 'packageName',
-    },
-    {
-        title: "نام کاربر",
-        slug: 'full_name',
-    },
-    {
-        title: "وضعیت برنامه",
-        slug: 'status',
-        useTranslate: true
-    },
-    {
-        title: "تاریخ ایجاد",
-        slug: 'createdAt',
-        useJalaliFormat: true
-    },
-]
-let data = [];
 
 function toJalali(gregorianDate){
     return moment(gregorianDate, 'YYYY-MM-DD').format('jYYYY/jMM/jDD');
@@ -72,11 +47,24 @@ function _renderItem(data) {
 
 
 
+function _renderHeader(data) {
+    const tableHeader = document.getElementById('tableHeader');
+
+    // Clear existing rows
+    tableHeader.innerHTML = '';
+    // Iterate through the data and create rows
+
+    const row = document.createElement('tr');
+    data.map(el => {
+        row.innerHTML += `<th scope="col">${el.title}</td>`;
+    })
+    tableHeader.appendChild(row);
+}
 
 
+_renderHeader(tableStructure)
 
 document.addEventListener("DOMContentLoaded", () => {
-    const userTableBody = document.getElementById("userTableBody");
     // fetchData() is located at "./scripts/api.js"
     fetchData( {
         page: page, 

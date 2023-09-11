@@ -41,7 +41,12 @@ function generatePagination(currentPage, totalPages) {
       // Add click event listener to handle previous page navigation
       prevLink.addEventListener('click', () => {
           currentPage = Math.max(currentPage - 1, 1); // Ensure currentPage doesn't go below 1
-          fetchData(currentPage, limit.value, totalItems, totalPages);
+          fetchData({
+            page: currentPage,
+            limit: limit.value,
+            totalPages: totalPages,
+            filter: filter
+          });
       });
 
       prevPage.appendChild(prevLink);
@@ -61,7 +66,12 @@ function generatePagination(currentPage, totalPages) {
           // Add click event listener to handle page navigation
           pageLink.addEventListener('click', () => {
               currentPage = i;
-              fetchData(currentPage, limit.value, totalItems, totalPages);
+              fetchData({
+                page: currentPage,
+                limit: limit.value,
+                totalPages: totalPages,
+                filter: filter
+              });
           });
 
           pageItem.appendChild(pageLink);
@@ -78,7 +88,12 @@ function generatePagination(currentPage, totalPages) {
       // Add click event listener to handle next page navigation
       nextLink.addEventListener('click', () => {
           currentPage = Math.min(currentPage + 1, totalPages); // Ensure currentPage doesn't exceed totalPages
-          fetchData(currentPage, limit.value, totalItems, totalPages);
+          fetchData({
+            page: currentPage,
+            limit: limit.value,
+            totalPages: totalPages,
+            filter: filter
+          });
       });
 
       nextPage.appendChild(nextLink);
@@ -93,7 +108,12 @@ document.getElementById('prevPage').addEventListener('click', () => {
     console.log('prevPage')
     if (page > 1) {
         page--;
-        fetchData(page, limit.value, totalItems, totalPages)
+        fetchData({
+            page: page,
+            limit: limit.value,
+            totalPages: totalPages,
+            filter: filter
+        })
     }
 });
 
@@ -101,7 +121,13 @@ document.getElementById('nextPage').addEventListener('click', () => {
     console.log('nextPage')
     if (page < totalPages) {
         page++;
-        fetchData(page, limit.value, totalItems, totalPages)
+        // page, limit.value, totalItems, totalPages
+        fetchData({
+            page: page,
+            limit: limit.value,
+            totalPages: totalPages,
+            filter: filter
+        })
     }
 });
 

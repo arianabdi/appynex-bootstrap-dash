@@ -1,48 +1,5 @@
 
-
-let filterParams =  '';
-let filterItems = [
-    {
-        title: "نوع برنامه",
-        slug: 'packageId',
-        type: "select",
-        options: [
-            {label: 'حرفه ای', value: '64ef8b54e632619c304525a6'},
-            {label: 'مبتدی', value: '64ef8b61e632619c304525a9'},
-        ],
-        value: "1",
-        selected: false
-    },
-    {
-        title: "وضعیت برنامه",
-        slug: 'status',
-        type: "select",
-        options: [
-            
-            {label: 'در انتظار پرداخت', value: 'unpaid'},
-            {label: 'تکمیل فرم', value: 'fill_info'},
-            {label: 'در حال آماده سازی', value: 'pending'},
-            {label: 'فعال', value: 'active'},
-            {label: 'منقضی شده', value: 'expired'},
-        ],
-        value: "11",
-        selected: true
-    },
-    {
-        title: "نام کاربر",
-        slug: 'full_name',
-        type: "text",
-        value: "",
-        selected: false
-    },
-]
-
-
-
-
-
-
-
+var filter = '';
 
 function ConvertFilterObjectToUrlParam(obj){
     const queryParams = [];
@@ -57,7 +14,7 @@ function ConvertFilterObjectToUrlParam(obj){
 
 
 function FilterQueryInputSelector(type, options, slug){
-    console.log('options', options);
+
     switch(type){
         case 'text':
             return `<input type="text" class="form-control yekan-bakh" placeholder=""  data-index="1" data-label="${slug}">` ;
@@ -70,7 +27,6 @@ function FilterQueryInputSelector(type, options, slug){
         case 'select':
             let items = '';
             options.forEach(option => {
-                console.log('option', option);
                 items += `<option class="yekan-bakh" value="${option.value}">${option.label}</option>\n`
             });
             return `
@@ -83,9 +39,6 @@ function FilterQueryInputSelector(type, options, slug){
 
     }
 }
-
-
-
 
 function FilterQueryItem(title, slug, type, options, value, selected){
     const container = document.createElement('div');
@@ -110,15 +63,11 @@ return container;
 }
 
 
-
 const modalContainer = document.getElementById('modal-container');
 
 
 function loadFilterModal(){
-    console.log('loadFilterModal')
-    
     filterItems.forEach(item => {
-        console.log('each', item);
         const component = FilterQueryItem(item.title, item.slug, item.type, item.options, '', item.selected);
         modalContainer.appendChild(component);
     });
@@ -131,10 +80,14 @@ loadFilterModal()
 
 
 
+
+
+
+
 // Function to print the form data as a JSON object
 function applyFilter() {
-    console.log('xxxxxxxxxx', filterItems)
-    const filter = ConvertFilterObjectToUrlParam(filterItems);
+    filter = ConvertFilterObjectToUrlParam(filterItems);
+    //this function comes from "api.js"
     fetchData( {
         page: page, 
         limit: limit.value, 
@@ -159,7 +112,6 @@ function applyFilter() {
   
     filterItems.map(item => {
         if(item.slug === label && index === "1"){
-            console.log('change', item);
             item.value = value;
         }
     })
@@ -173,7 +125,6 @@ document.querySelectorAll('.form-check-input').forEach(function(checkbox) {
     checkbox.addEventListener('change', function(event) {
         let label = event.target.dataset.label;
         let index = event.target.dataset.index;
-        console.log('lable', label, 'index', index);
 
         filterItems.map(item => {
             if(item.slug === label  && index === "2"){

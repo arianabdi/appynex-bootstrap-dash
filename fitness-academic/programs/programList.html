@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
 
-    <title>AddNewProgram</title>
+    <title>برنامه ها</title>
     <link rel="stylesheet" href="../../assets/css/dashforge.css">
     <link rel="stylesheet" href="../../assets/css/dashforge.demo.css">
     <link href="../layout/layout.css" rel="stylesheet">
@@ -49,8 +49,8 @@
             <li class="breadcrumb-item active" aria-current="page">Table Basic</li>
           </ol>
   
-          <h1 class="df-title yekan-bakh">برنامه ها</h1>
-          <p class="mg-b-30 yekan-bakh">این صفحه لیست برنامه هایی که از طرف کاربران در اپلیکیشن خریداری شده است و ایجاد شده نمایش داده میشوداین صفحه لیست برنامه هایی که از طرف کاربران در اپلیکیشن خریداری شده است و ایجاد شده نمایش داده میشود</p>
+          <div id="heading">
+          </div>
   
   
           <div class="row pd-15">
@@ -67,24 +67,15 @@
           <div data-label="Example" class="df-example demo-table">
             <div class="table-responsive">
               <table class="table mg-b-0">
-                <thead>
-                  <tr>
-                    <th scope="col">شناسه</th>
-                    <th scope="col">نوع برنامه</th>
-                    <th scope="col">نام کاربر</th>
-                    <th scope="col">وضعیت برنامه</th>
-                    <th scope="col">تاریخ ایجاد</th>
-                  </tr>
+
+
+                <thead id="tableHeader">
                 </thead>
+
+
                 <tbody id="tableBody">
-                  <!-- <tr>
-                    <th scope="row">1</th>
-                    <td>Adrian Monino</td>
-                    <td>Front-End Engineer</td>
-                    <td>Computer Science</td>
-                    <td>$120,000</td>
-                  </tr> -->
                 </tbody>
+
               </table>
             </div><!-- table-responsive -->
   
@@ -196,13 +187,16 @@
     <script src="../layout/layout.js"></script>
     <script src="../layout/loader.js"></script>
     <script src="../plugins/axios.js"></script>
-    <script src="./scripts/filter.js"></script>
+    <script src="./scripts/filterQuery.js"></script>
+    <script src="../scripts/filter.js"></script>
     <script src="./scripts/api.js"></script>
     <script src="../plugins/jalali-date.js"></script>
     <script src="../tools/pagination.js"></script>
     <script src="../../env.js"></script>
     <script src="../scripts/exportCsv.js"></script>
-    <script src="./scripts/tableLoader.js"></script>
+    <script src="./scripts/tableQuery.js"></script>
+    <script src="../scripts/heading.js"></script>
+    <script src="../scripts/table.js"></script>
 
   </body>
 </html>
