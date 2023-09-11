@@ -38,84 +38,88 @@
             <li class="breadcrumb-item"><a href="#">UI Elements</a></li>
             <li class="breadcrumb-item active" aria-current="page">Tab</li>
           </ol>
-  
-          <h1 class="df-title yekan-bakh">ایجاد تمرین جدید</h1>
-          <p class="mg-b-30 yekan-bakh">در بخش باید متناسب با اطلاعات وارد شده توسط کاربر، برنامه تمرینی و غذایی ایجاد و ثبت شوددر بخش باید متناسب با اطلاعات وارد شده توسط کاربر، برنامه تمرینی و غذایی ایجاد و ثبت شوددر بخش باید متناسب با اطلاعات وارد شده توسط کاربر، برنامه تمرینی و غذایی ایجاد و ثبت شود</p>
-  
-          <form id="new-excercise-form">
-            <div class="row mg-b-10">
+
+          <div id="heading">
+          </div>
+
+
+          <form id="filterForm">
+            <div id="form-container">
+              <!-- <div class="row mg-b-10">
               
-              <div class="col-sm order-2">
-                <div class="row">
-                  <div class="col-sm-12 order-2 yekan-bakh">عنوان تمرین</div>
-                  <div class="col-sm-12 order-3 d-flex justify-content-end">
-                    <input type="text" id="title" class="form-control yekan-bakh" placeholder="عنوان تمرین">
+                <div class="col-sm order-2">
+                  <div class="row">
+                    <div class="col-sm-12 order-2 yekan-bakh">عنوان تمرین</div>
+                    <div class="col-sm-12 order-3 d-flex justify-content-end">
+                      <input type="text" id="title" class="form-control yekan-bakh" placeholder="عنوان تمرین">
+                    </div>
                   </div>
                 </div>
-              </div>
-    
-              <div class="col-sm order-2">
-                <div class="row">
-                  <div class="col-sm-12 order-2 yekan-bakh">شناسه تمرین</div>
-                  <div class="col-sm-12 order-3 d-flex justify-content-end">
-                    <input type="text" id="slug" class="form-control yekan-bakh" placeholder="شناسه تمرین">
+      
+                <div class="col-sm order-2">
+                  <div class="row">
+                    <div class="col-sm-12 order-2 yekan-bakh">شناسه تمرین</div>
+                    <div class="col-sm-12 order-3 d-flex justify-content-end">
+                      <input type="text" id="slug" class="form-control yekan-bakh" placeholder="شناسه تمرین">
+                    </div>
                   </div>
                 </div>
+      
               </div>
-    
+      
+              <br/>
+      
+              <div class="row mg-b-10">
+                  
+                <div class="col-sm order-2">
+                  <div class="row">
+                    <div class="col-sm-12 order-2 yekan-bakh">دسته بندی تمرین</div>
+                    <div class="col-sm-12 order-3 d-flex justify-content-end">
+                      <select  id="category" class="form-select yekan-bakh">
+                        <option class="yekan-bakh" value="meal">وعده غذایی</option>
+                        <option class="yekan-bakh" value="supplement"selected>مکمل</option>
+                        <option class="yekan-bakh" value="limitation">محدودیت</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+      
+                <div class="col-sm order-2">
+                  <div class="row">
+                    <div class="col-sm-12 order-2 yekan-bakh">سطح تمرین</div>
+                    <div class="col-sm-12 order-3 d-flex justify-content-end">
+                      <select  id="level" class="form-select yekan-bakh">
+                        <option class="yekan-bakh" value="meal">مبتدی</option>
+                        <option class="yekan-bakh" value="supplement"selected>حرفه ای</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+      
+              </div>
+      
+      
+              <div class="row mg-b-10">
+                <div class="col-sm order-2">
+      
+                  <div class="row mg-t-20">
+                    <div class="col-sm-8 order-2 yekan-bakh mg-t-5">توضیحات</div>
+                  
+                  </div>
+      
+                  <div class="row">
+                    <div class="col-sm-12 order-3 d-flex justify-content-end">
+                      <textarea  id="description" class="form-control yekan-bakh" rows="4" placeholder="توضیحات"></textarea>
+                    </div>
+                  </div>
+      
+                </div>
+              </div>
+      
+              <br/> -->
+              <!-- <button type="button" id="submit-btn" class=" btn btn-primary w-100 yekan-bakh">ایجاد تمرین جدید</button> -->
+  
             </div>
-    
-            <br/>
-    
-            <div class="row mg-b-10">
-                
-              <div class="col-sm order-2">
-                <div class="row">
-                  <div class="col-sm-12 order-2 yekan-bakh">دسته بندی تمرین</div>
-                  <div class="col-sm-12 order-3 d-flex justify-content-end">
-                    <select  id="category" class="form-select yekan-bakh">
-                      <option class="yekan-bakh" value="meal">وعده غذایی</option>
-                      <option class="yekan-bakh" value="supplement"selected>مکمل</option>
-                      <option class="yekan-bakh" value="limitation">محدودیت</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-    
-              <div class="col-sm order-2">
-                <div class="row">
-                  <div class="col-sm-12 order-2 yekan-bakh">سطح تمرین</div>
-                  <div class="col-sm-12 order-3 d-flex justify-content-end">
-                    <select  id="level" class="form-select yekan-bakh">
-                      <option class="yekan-bakh" value="meal">مبتدی</option>
-                      <option class="yekan-bakh" value="supplement"selected>حرفه ای</option>
-                    </select>
-                  </div>
-                </div>
-              </div>
-    
-            </div>
-    
-    
-            <div class="row mg-b-10">
-              <div class="col-sm order-2">
-    
-                <div class="row mg-t-20">
-                  <div class="col-sm-8 order-2 yekan-bakh mg-t-5">توضیحات</div>
-                
-                </div>
-    
-                <div class="row">
-                  <div class="col-sm-12 order-3 d-flex justify-content-end">
-                    <textarea  id="description" class="form-control yekan-bakh" rows="4" placeholder="توضیحات"></textarea>
-                  </div>
-                </div>
-    
-              </div>
-            </div>
-    
-            <br/>
-            <button type="button" id="submit-btn" class=" btn btn-primary w-100 yekan-bakh">ایجاد تمرین جدید</button>
           </form>
   
          
@@ -153,6 +157,9 @@
   
     <script src="../layout/layout.js"></script>
     <script src="../layout/loader.js"></script>
+    <script src="./scripts/formQuery.js"></script>
+    <script src="../scripts/form.js"></script>
+    <script src="../scripts/heading.js"></script>
     <script>
       $(function(){
         'use strict'
