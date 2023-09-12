@@ -15,9 +15,70 @@ function InputSelector(type, options, slug, row){
             break;
 
         case 'textarea':
-            return ` <textarea class="form-control yekan-bakh" rows="4" data-index="1" data-label="${slug}"  placeholder="توضیحات"></textarea>` ;
+            return `<textarea class="form-control yekan-bakh" rows="4" data-index="1" data-label="${slug}"  placeholder="توضیحات"></textarea>` ;
             break;
            
+
+        case 'image':
+            return `
+            <style>
+                .image-preview{
+                    width: 200px !important;
+                    max-width: unset;
+                    height: 200px !important;
+                    overflow: hidden;
+                    margin: 10px;
+                    border-radius: 12px;
+                    border: 1px solid #ccc;
+                }
+            </style>
+            <div class="col-sm-12">
+                <input class="form-control" type="file"  data-label="${slug}"  accept="image/*" id="image-uploader">
+            </div>
+            <br>
+            <div class="col-sm-12 text-center bg-light d-flex justify-content-center align-items-center">
+                <div class="image-preview">
+                    <img id="previewImage" src="#" alt="Image Preview" class="img-fluid">
+                </div>
+            </div>
+            `
+            break;
+
+        case 'video':
+            return `
+            <style>
+                .video-preview{
+                    width: 200px !important;
+                    overflow: hidden;
+                    margin: 10px;
+                    border-radius: 12px;
+                    border: 1px solid #ccc;  
+                    height: 200px;
+                    justify-content: center;
+                    display: flex;
+                }
+                .action-button{
+                    background: #fff;
+                    padding: 10px 9px 10px 11px;
+                    border-radius: 30px;
+                    border: 1px solid #ccc;
+                    position: absolute;
+                }
+            </style>
+            <div class="col-sm-12">
+                <input class="form-control" type="file"  data-label="${slug}" accept="video/*" id="video-uploader">
+            </div>
+            <br>
+            <div class="col-sm-12 text-center bg-light d-flex justify-content-center align-items-center">
+                <div class="video-preview">
+                    <video id="previewVideo" src="#" alt="Video Preview" class="img-fluid">
+                    
+                </div>
+                <div class="action-button" id="pauseButton"><i data-feather="pause"></i></div>
+                <div class="action-button" id="playButton"><i data-feather="play"></i></div>
+            </div>
+            `
+            break;
 
         case 'select':
             let items = '';
@@ -46,10 +107,10 @@ function row(items){
         container.innerHTML += `
         <div class="col-sm order-2">
             <div class="row">
-            <div class="col-sm-12 order-2 yekan-bakh">${item.title}</div>
-            <div class="col-sm-12 order-3 d-flex justify-content-end">
-                ${InputSelector(item.type, item.options, item.slug, index)}
-            </div>
+                <div class="col-sm-12 order-2 yekan-bakh">${item.title}</div>
+                <div class="col-sm-12 order-3">
+                    ${InputSelector(item.type, item.options, item.slug, index)}
+                </div>
             </div>
         </div>`;
 
@@ -149,10 +210,96 @@ function submitForm() {
     newItem(object);
   }
   
+
+const playButton = document.getElementById('playButton');
+const pauseButton = document.getElementById('pauseButton');
+const video = document.getElementById('previewVideo');
+
+  // Function to handle file input change
+function handleFileInputChange() {
+    const input = document.getElementById('image-uploader');
+    const previewImage = document.getElementById('previewImage');
   
+    const file = input.files[0]; // Get the selected file
   
-  // Event listener for the "Print Data" button
-  document.getElementById('submit').addEventListener('click', submitForm);
+    if (file) {
+      const reader = new FileReader(); // Create a FileReader
+      reader.onload = function (e) {
+        // Set the image source to the selected file's data URL
+        previewImage.src = e.target.result;
+      };
+      reader.readAsDataURL(file); // Read the selected file as a data URL
+    } else {
+      // If no file is selected or the user cancels the selection, clear the preview
+      previewImage.src = '#';
+    }
+  }
+  
+
+function handleVideoInputChange() {
+    const input = document.getElementById('video-uploader');
+    const previewVideo = document.getElementById('previewVideo');
+
+    const file = input.files[0]; // Get the selected file
+
+    if (file) {
+        const blobURL = URL.createObjectURL(file); // Create a blob URL for the selected file
+        previewVideo.src = blobURL; // Set the video source to the blob URL
+        playButton.style.display = 'block'; // Show "Play" button
+        pauseButton.style.display = 'none'; // Hide "Pause" button
+  
+    } else {
+        // If no file is selected or the user cancels the selection, clear the video preview
+        previewVideo.src = '';
+        playButton.style.display = 'block'; // Show "Play" button
+        pauseButton.style.display = 'none'; // Hide "Pause" button
+
+    }
+}
+
+    // Function to handle video play
+function playVideo() {
+    video.play();
+    playButton.style.display = 'none'; // Hide "Play" button
+    pauseButton.style.display = 'block'; // Show "Pause" button
+
+}
+
+    // Function to handle video pause
+function pauseVideo() {
+    video.pause();
+    pauseButton.style.display = 'none'; // Hide "Pause" button
+    playButton.style.display = 'block'; // Show "Play" button
+
+}
+
+
+
+
+
+// Add an event listener to toggle button visibility when the video's playback state changes
+video.addEventListener('play', () => {
+playButton.style.display = 'none'; // Hide "Play" button
+pauseButton.style.display = 'block'; // Show "Pause" button
+});
+
+video.addEventListener('pause', () => {
+pauseButton.style.display = 'none'; // Hide "Pause" button
+playButton.style.display = 'block'; // Show "Play" button
+});
+
+playButton.addEventListener('click', playVideo);
+pauseButton.addEventListener('click', pauseVideo);
+
+// Add an event listener to the file input
+document.getElementById('video-uploader').addEventListener('change', handleVideoInputChange);
+
+// Add an event listener to the file input
+document.getElementById('image-uploader').addEventListener('change', handleFileInputChange);
+
+
+// Event listener for the "Print Data" button
+document.getElementById('submit').addEventListener('click', submitForm);
 
 
 

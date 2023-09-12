@@ -5,7 +5,7 @@
   "main": "index.html",
   "author": "ThemePixels",
   "scripts": {
-    "start": "http-server --port 8033"
+    "start": "http-server"
   },
   "devDependencies": {
   },
