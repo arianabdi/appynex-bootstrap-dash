@@ -7,9 +7,10 @@ function fetchData({page, limit, totalPages, filter}){
     // Fetch data using Axios
 
 
-    axios.get(`${baseUrl}/exercise?page=${page}&limit=${limit}${filter ? '&'+filter : ''}`)
+    axios.get(`${baseUrl}/exercise?page=${page}&limit=${limit}${filter ? '&'+filter : ''}`, {headers: headers})
     .then(response => {
-        if(response.statusCode === 200){
+        console.log('res',response)
+        if(response.status === 200){
           data = response.data.data.exercises; // Assuming data is an array of objects
           console.log('resp',response.data.data )
           _renderItem(data); // Populate the table with the fetched data
