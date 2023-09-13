@@ -27,7 +27,6 @@ function newItem(body){
 
     axios.post(`${baseUrl}/package`, body, headers)
     .then(response => {
-        
         console.log('newItem', response)
         // Check if the request was successful
       if (response.status === 200) {

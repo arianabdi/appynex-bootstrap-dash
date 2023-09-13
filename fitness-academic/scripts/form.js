@@ -41,6 +41,10 @@ function InputSelector(type, options, slug, row){
                     <img id="previewImage" src="#" alt="Image Preview" class="img-fluid">
                 </div>
             </div>
+            <div class="progress ht-2 mg-b-10">
+                <div class="progress-bar wd-100p bg-df-2" role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            </div>
+            
             `
             break;
 
@@ -76,6 +80,10 @@ function InputSelector(type, options, slug, row){
                 </div>
                 <div class="action-button" id="pauseButton"><i data-feather="pause"></i></div>
                 <div class="action-button" id="playButton"><i data-feather="play"></i></div>
+            </div>
+            
+            <div class="progress ht-2 mg-b-10">
+                <div class="progress-bar wd-100p bg-df-2" role="progressbar" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
             </div>
             `
             break;
@@ -169,8 +177,6 @@ form.addEventListener("change", function(event) {
     let index = event.target.dataset.index;
     let label = event.target.dataset.label;
 
-
-
     console.log('chagne', label, value);
     formItems.map(rows => {
         rows.map(item => {
@@ -183,42 +189,95 @@ form.addEventListener("change", function(event) {
 });
 
 
-// Function to print the form data as a JSON object
-function submitForm() {
+
   
 
-    let object = {};
+// const playButton = document.getElementById('playButton');
+// const pauseButton = document.getElementById('pauseButton');
+// const video = document.getElementById('previewVideo');
+
+
+
+// Function to print the form data as a JSON object
+function submitForm() {
+    const imageInput = document.getElementById('image-uploader');
+    // const videoInput = document.getElementById('video-uploader');
+
+   
+    let formData = new FormData();
+    let problems = [];
     formItems.map(rows => {
         rows.map(item => {
 
-            object[item.slug] = item.value; 
+            if(item.type === 'image' || item.type === 'video'){
+                const file = imageInput.files[0];
+                
+                formData.append(item.slug, file);
+                
+            }else{
+                // object[item.slug] = item.value; 
+                formData.append(item.slug, item.value);
+            }
 
             if(item.regex){
                 if(!item.regex.test(item.value)){
-                    alert(item.alert);
+                    problems.push(item.alert)
                     return;
                 }
             }
 
             if(item.isRequired){
                 if(item.value === ""){
-                    alert(`Please fill ${item.slug} field!`)
+                    problems.push(`لطفا فیلد ${item.slug} را پر کنید`)
                 }
             }
         })
     })
-    newItem(object);
-  }
-  
+    if(problems.length > 0){
+        // console.log('problems', problems.join('<br>'))
+        const ul = problemMessageList(problems);
+        showToast({
+            title: 'مشکلات فرم', 
+            component: ul
+          });
+        return;
+    }
+    newItem(formData);
+}
 
-const playButton = document.getElementById('playButton');
-const pauseButton = document.getElementById('pauseButton');
-const video = document.getElementById('previewVideo');
+function problemMessageList(problems){
+
+    if(problems){
+        // Create an empty array to store the <li> elements
+        var listItems = [];
+
+        // Loop through the Problem array and create <li> elements
+        problems.forEach( problem => {
+            var listItem = document.createElement('li');
+            listItem.textContent = problem;
+            listItems.push(listItem);
+        });
+
+        // Create a <ul> element to hold the <li> elements
+        var ul = document.createElement('ul');
+
+        // Append the <li> elements to the <ul> element
+        listItems.forEach((item) => {
+            ul.appendChild(item);
+        });
+        
+        return ul;
+    }
+ 
+}
 
   // Function to handle file input change
 function handleFileInputChange() {
     const input = document.getElementById('image-uploader');
     const previewImage = document.getElementById('previewImage');
+
+    console.log('image-input', input.files[0])
+    
   
     const file = input.files[0]; // Get the selected file
   
@@ -278,21 +337,26 @@ function pauseVideo() {
 
 
 // Add an event listener to toggle button visibility when the video's playback state changes
-video.addEventListener('play', () => {
-playButton.style.display = 'none'; // Hide "Play" button
-pauseButton.style.display = 'block'; // Show "Pause" button
-});
+// if(!video){
+    
+// }else{
+//     video.addEventListener('play', () => {
+//         playButton.style.display = 'none'; // Hide "Play" button
+//         pauseButton.style.display = 'block'; // Show "Pause" button
+//         });
+        
+//     video.addEventListener('pause', () => {
+//     pauseButton.style.display = 'none'; // Hide "Pause" button
+//     playButton.style.display = 'block'; // Show "Play" button
+//     });
+// }
 
-video.addEventListener('pause', () => {
-pauseButton.style.display = 'none'; // Hide "Pause" button
-playButton.style.display = 'block'; // Show "Play" button
-});
 
-playButton.addEventListener('click', playVideo);
-pauseButton.addEventListener('click', pauseVideo);
+// playButton.addEventListener('click', playVideo);
+// pauseButton.addEventListener('click', pauseVideo);
 
-// Add an event listener to the file input
-document.getElementById('video-uploader').addEventListener('change', handleVideoInputChange);
+// // Add an event listener to the file input
+// document.getElementById('video-uploader').addEventListener('change', handleVideoInputChange);
 
 // Add an event listener to the file input
 document.getElementById('image-uploader').addEventListener('change', handleFileInputChange);

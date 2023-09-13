@@ -9,10 +9,10 @@ let formItems = [
 
         {
             title: "عنوان تمرین",
-            slug: 'name',
+            slug: 'title',
             type: "text",
             regex: /^[A-Za-z\u0600-\u06FF\s]+$/,
-            alert: 'Title should contain only letters and spaces with no underline or numbers.',
+            alert: 'مقدار عنوان تمرین باید شامل حروف انگلیسی یا فارسی یا عدد باشد ',
             value: "",
         },
         
@@ -21,7 +21,7 @@ let formItems = [
             slug: 'slug',
             type: "text",
             regex: /^[A-Za-z0-9_]+$/,
-            alert: 'Slug should contain only letters, numbers, and underscores.',
+            alert: 'مقدار شناسه تمرین باید شامل عدد، حروف و underline باشد.',
             value: "",
         },
     ],
@@ -56,6 +56,7 @@ let formItems = [
         
     ],
     [
+
         {
             title: "توضیحات",
             slug: 'description',
@@ -71,14 +72,14 @@ let formItems = [
             value: "",
         },
     ],
-    [
-        {
-            title: "ویدیو تمرین",
-            slug: 'video',
-            type: "video",
-            value: "",
-        },
-    ]
+    // [
+    //     {
+    //         title: "ویدیو تمرین",
+    //         slug: 'video',
+    //         type: "video",
+    //         value: "",
+    //     },
+    // ]
 ]
 
 
