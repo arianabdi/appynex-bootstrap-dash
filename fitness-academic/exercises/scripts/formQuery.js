@@ -66,20 +66,20 @@ let formItems = [
     ],
     [
         {
+            title: "ویدیو تمرین",
+            slug: 'video',
+            type: "video",
+            value: "",
+        },
+    ],
+    [
+        {
             title: "عکس تمرین",
             slug: 'image',
             type: "image",
             value: "",
         },
-    ],
-    // [
-    //     {
-    //         title: "ویدیو تمرین",
-    //         slug: 'video',
-    //         type: "video",
-    //         value: "",
-    //     },
-    // ]
+    ]
 ]
 
 

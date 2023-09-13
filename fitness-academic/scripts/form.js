@@ -192,8 +192,7 @@ form.addEventListener("change", function(event) {
 
   
 
-// const playButton = document.getElementById('playButton');
-// const pauseButton = document.getElementById('pauseButton');
+
 // const video = document.getElementById('previewVideo');
 
 
@@ -201,7 +200,7 @@ form.addEventListener("change", function(event) {
 // Function to print the form data as a JSON object
 function submitForm() {
     const imageInput = document.getElementById('image-uploader');
-    // const videoInput = document.getElementById('video-uploader');
+    const videoInput = document.getElementById('video-uploader');
 
    
     let formData = new FormData();
@@ -209,13 +208,15 @@ function submitForm() {
     formItems.map(rows => {
         rows.map(item => {
 
-            if(item.type === 'image' || item.type === 'video'){
+            if(item.type === 'image'){
                 const file = imageInput.files[0];
-                
                 formData.append(item.slug, file);
                 
+            }else if(item.type === 'video'){
+                const file = videoInput.files[0];
+                formData.append(item.slug, file);
+
             }else{
-                // object[item.slug] = item.value; 
                 formData.append(item.slug, item.value);
             }
 
@@ -271,6 +272,8 @@ function problemMessageList(problems){
  
 }
 
+
+
   // Function to handle file input change
 function handleFileInputChange() {
     const input = document.getElementById('image-uploader');
@@ -295,6 +298,12 @@ function handleFileInputChange() {
   }
   
 
+
+
+const playButton = document.getElementById('playButton');
+const pauseButton = document.getElementById('pauseButton');
+const video = document.getElementById('previewVideo');
+
 function handleVideoInputChange() {
     const input = document.getElementById('video-uploader');
     const previewVideo = document.getElementById('previewVideo');
@@ -318,6 +327,7 @@ function handleVideoInputChange() {
 
     // Function to handle video play
 function playVideo() {
+    const video = document.getElementById('previewVideo');
     video.play();
     playButton.style.display = 'none'; // Hide "Play" button
     pauseButton.style.display = 'block'; // Show "Pause" button
@@ -326,14 +336,32 @@ function playVideo() {
 
     // Function to handle video pause
 function pauseVideo() {
+    const video = document.getElementById('previewVideo');
     video.pause();
     pauseButton.style.display = 'none'; // Hide "Pause" button
     playButton.style.display = 'block'; // Show "Play" button
 
 }
 
+if(playButton){
+    playButton.addEventListener('click', playVideo);
+}
 
+if(pauseButton){
+    pauseButton.addEventListener('click', pauseVideo);
+}
 
+if(video){
+    video.addEventListener('play', () => {
+    playButton.style.display = 'none'; // Hide "Play" button
+    pauseButton.style.display = 'block'; // Show "Pause" button
+    });
+        
+    video.addEventListener('pause', () => {
+    pauseButton.style.display = 'none'; // Hide "Pause" button
+    playButton.style.display = 'block'; // Show "Play" button
+    });
+}
 
 
 // Add an event listener to toggle button visibility when the video's playback state changes
@@ -359,8 +387,17 @@ function pauseVideo() {
 // document.getElementById('video-uploader').addEventListener('change', handleVideoInputChange);
 
 // Add an event listener to the file input
-document.getElementById('image-uploader').addEventListener('change', handleFileInputChange);
+const ImageUploader = document.getElementById('image-uploader');
+if(ImageUploader){
+    ImageUploader.addEventListener('change', handleFileInputChange);
+}
 
+const VideoUploader = document.getElementById('video-uploader');
+if(VideoUploader){
+    VideoUploader.addEventListener('change', handleVideoInputChange);
+}
+// document.getElementById('image-uploader').addEventListener('change', handleFileInputChange);
+// document.getElementById('video-uploader').addEventListener('change', handleVideoInputChange);
 
 // Event listener for the "Print Data" button
 document.getElementById('submit').addEventListener('click', submitForm);
