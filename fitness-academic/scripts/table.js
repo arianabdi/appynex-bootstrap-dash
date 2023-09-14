@@ -70,6 +70,17 @@ function _renderHeader(data) {
 }
 
 
+function setIsLoading(status){
+    if(status === true){
+        $('#table-loading-placeholder').show();
+        $('#table-main-placeholder').hide();
+        return;
+    }
+
+    $('#table-loading-placeholder').hide();
+    $('#table-main-placeholder').show();
+}
+
 _renderHeader(tableStructure)
 
 document.addEventListener("DOMContentLoaded", () => {

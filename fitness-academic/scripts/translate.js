@@ -54,7 +54,15 @@ function translate(status){
 
         case "abdominal_muscles":
             return "عضلات شکمی"; 
-            break;       
+            break;   
+
+        case "news":
+            return "اخبار"; 
+            break;   
+
+        case "events":
+            return "رویدادها"; 
+            break;            
     }
 }
 

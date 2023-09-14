@@ -3,12 +3,11 @@ const access_token = localStorage.getItem("token");
 let headers = {headers: {Authorization: `bearer ${access_token}`}}
 
 function fetchData({page, limit, totalPages, filter}){
-    // Fetch data using Axios
-
+  
     setIsLoading(true);
-    axios.get(`${baseUrl}/package?page=${page}&limit=${limit}${filter ? '&'+filter : ''}`, {headers: headers})
+    axios.get(`${baseUrl}/posts?page=${page}&limit=${limit}${filter ? '&'+filter : ''}`, {...headers})
     .then(response => {
-        data = response.data.data.packages; // Assuming data is an array of objects
+        data = response.data.data.posts; // Assuming data is an array of objects
         console.log('resp',response.data.data )
         _renderItem(data); // Populate the table with the fetched data
        
@@ -25,16 +24,15 @@ function fetchData({page, limit, totalPages, filter}){
 }
 
 function newItem(body){
-
-    axios.post(`${baseUrl}/package`, body, headers)
+    axios.post(`${baseUrl}/posts`, body, headers)
     .then(response => {
         console.log('newItem', response)
         // Check if the request was successful
       if (response.status === 200) {
         // Redirect to the "package list" page upon success
-        window.location.href = '../packages/table.html'; // Replace with your actual URL
+        window.location.href = '../posts/table.html'; // Replace with your actual URL
       } else {
-        alert('Failed to create the package.'); // Handle other status codes if needed
+        alert('Failed to create the Post.'); // Handle other status codes if needed
       }
     })
     .catch(error => {
@@ -43,7 +41,7 @@ function newItem(body){
 }
 
 function deleteItem({packageId}){
-    axios.delete(`${baseUrl}/package/${packageId}`)
+    axios.delete(`${baseUrl}/posts/${packageId}`)
     .then(response => {
         console.log('deleteItem', response)
         if(response.status === 200){

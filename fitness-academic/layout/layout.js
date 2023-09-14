@@ -3,4 +3,5 @@ $(document).ready(function() {
     $("#header-placeholder").load("../layout/header.html");
     $("#footer-placeholder").load("../layout/footer.html");
     $("#toast-placeholder").load("../layout/toast.html");
+    $("#table-loading-placeholder").load("../layout/table-placeholder.html");
 });

@@ -82,43 +82,47 @@
           </div>
   
   
-          <div data-label="Example" class="df-example demo-table">
-
-            <div class="table-responsive">
-              <table class="table mg-b-0">
-                <thead id="tableHeader"></thead>
-                <tbody id="tableBody"></tbody>
-              </table>
-            </div><!-- table-responsive -->
-  
-            <div class="row mg-t-10">
-              <div class="col">
-                <nav aria-label="Page navigation example">
-                  <ul class="pagination mg-b-0" id="pagination">
-                    <li class="page-item disabled" id="prevPage"><a class="page-link page-link-icon" href="#"><i data-feather="chevron-left"></i></a></li>
-                    <!-- Page links will be added dynamically here -->
-                    <li class="page-item" id="nextPage"><a class="page-link page-link-icon" href="#"><i data-feather="chevron-right"></i></a></li>
-                  </ul>
-                </nav>
+          <div id="table-main-placeholder" style="display: none;">
+            <div data-label="Example" class="df-example demo-table">
+              <div class="table-responsive">
+                <table class="table mg-b-0">
+                  <thead id="tableHeader"></thead>
+                  <tbody id="tableBody"></tbody>
+                </table>
+              </div><!-- table-responsive -->
+    
+              <div class="row mg-t-10">
+                <div class="col">
+                  <nav aria-label="Page navigation example">
+                    <ul class="pagination mg-b-0" id="pagination">
+                      <!-- Page links will be added dynamically here -->
+                      <li class="page-item" id="nextPage"><a class="page-link page-link-icon" href="#"><i data-feather="chevron-right"></i></a></li>
+                      
+                      <li class="page-item disabled" id="prevPage"><a class="page-link page-link-icon" href="#"><i data-feather="chevron-left"></i></a></li>
+                    </ul>
+                  </nav>
+                </div>
+    
+                <div class="col">
+                  <select class="form-select" id="select-limit">
+                    <option value="2">2</option>
+                    <option value="5">5</option>
+                    <option value="10"selected>10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                  </select>
+                </div>
+    
               </div>
-  
-              <div class="col">
-                <select class="form-select" id="select-limit">
-                  <option value="2">2</option>
-                  <option value="5">5</option>
-                  <option value="10"selected>10</option>
-                  <option value="20">20</option>
-                  <option value="50">50</option>
-                </select>
-              </div>
-  
-            </div>
-          </div><!-- df-example -->
+            </div><!-- df-example -->
+          </div>
+          <div id="table-loading-placeholder"></div>
 
-          <div id="footer-placeholder"></div>
-  
-        </div><!-- container -->
-      </div><!-- content -->
+          </div>
+        <div id="footer-placeholder"></div>
+
+      </div><!-- container -->
+    </div><!-- content -->
 
     </div>
 
