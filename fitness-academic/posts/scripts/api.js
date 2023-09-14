@@ -1,11 +1,11 @@
 let baseUrl = `http://localhost:30112/api`;
 const access_token = localStorage.getItem("token");
-let headers = {headers: {Authorization: `bearer ${access_token}`}}
+let headers = {Authorization: `bearer ${access_token}`}
 
 function fetchData({page, limit, totalPages, filter}){
   
     setIsLoading(true);
-    axios.get(`${baseUrl}/posts?page=${page}&limit=${limit}${filter ? '&'+filter : ''}`, {...headers})
+    axios.get(`${baseUrl}/posts?page=${page}&limit=${limit}${filter ? '&'+filter : ''}`, {headers: {...headers}})
     .then(response => {
         data = response.data.data.posts; // Assuming data is an array of objects
         console.log('resp',response.data.data )
@@ -24,7 +24,8 @@ function fetchData({page, limit, totalPages, filter}){
 }
 
 function newItem(body){
-    axios.post(`${baseUrl}/posts`, body, headers)
+    console.log('body', body)
+    axios.post(`${baseUrl}/posts`, body, {headers: {...headers, contentType: "multipart/form-data "}})
     .then(response => {
         console.log('newItem', response)
         // Check if the request was successful

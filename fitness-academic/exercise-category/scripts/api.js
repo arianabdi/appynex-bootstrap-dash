@@ -7,11 +7,11 @@ function fetchData({page, limit, totalPages, filter}){
     // Fetch data using Axios
 
     setIsLoading(true);
-    axios.get(`${baseUrl}/exercise?page=${page}&limit=${limit}${filter ? '&'+filter : ''}`, {headers: headers})
+    axios.get(`${baseUrl}/category/exercise?page=${page}&limit=${limit}${filter ? '&'+filter : ''}`, {headers: headers})
     .then(response => {
         console.log('res',response)
         if(response.status === 200){
-          data = response.data.data.exercises; // Assuming data is an array of objects
+          data = response.data.data.categories; // Assuming data is an array of objects
           console.log('resp',response.data.data )
           _renderItem(data); // Populate the table with the fetched data
          
@@ -26,6 +26,8 @@ function fetchData({page, limit, totalPages, filter}){
             message:`اشکال در دریافت اطلاعات:‌ ${response.message}`
           });
         }
+        
+
     })
     .catch(error => {
         showToast({
@@ -41,10 +43,10 @@ function newItem(body){
 
   console.log('newItem', body);
     axios.post(
-      `${baseUrl}/exercise`, 
+      `${baseUrl}/category/exercise`, 
       body,
       {
-        headers: {...headers, contentType: "multipart/form-data "},
+        headers: {...headers},
       },
       
     ).then(response => {
@@ -70,7 +72,7 @@ function newItem(body){
 }
 
 function deleteItem({exerciseId}){
-    axios.delete(`${baseUrl}/exercise/${exerciseId}`)
+    axios.delete(`${baseUrl}/category/exercise/${exerciseId}`)
     .then(response => {
         console.log('deleteItem', response)
         if(response.status === 200){

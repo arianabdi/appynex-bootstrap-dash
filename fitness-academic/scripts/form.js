@@ -17,7 +17,16 @@ function InputSelector(type, options, slug, row){
         case 'textarea':
             return `<textarea class="form-control yekan-bakh" rows="4" data-index="1" data-label="${slug}"  placeholder="توضیحات"></textarea>` ;
             break;
-           
+        
+        case 'ql-editor':
+            return `      
+            <div class="editor-full">
+                <div id="document-full" class="ql-scroll-y" style="height: 300px;">
+                    <h1>jQueryScript.Net</h1>
+                </div>
+            </div>
+            ` ;
+            break;   
 
         case 'image':
             return `
@@ -166,8 +175,6 @@ loadForm()
 
 
   
-// Event listener for the "Print Data" button
-// document.getElementById('filter-button').addEventListener('click', '');
 
 
 // Detect all changes in this form
@@ -180,6 +187,7 @@ form.addEventListener("change", function(event) {
     console.log('chagne', label, value);
     formItems.map(rows => {
         rows.map(item => {
+
             if(item.slug === label){
                 item.value = value;
             }
@@ -202,12 +210,13 @@ function submitForm() {
     const imageInput = document.getElementById('image-uploader');
     const videoInput = document.getElementById('video-uploader');
 
+
    
     let formData = new FormData();
     let problems = [];
     formItems.map(rows => {
         rows.map(item => {
-
+            
             if(item.type === 'image'){
                 const file = imageInput.files[0];
                 formData.append(item.slug, file);
@@ -243,6 +252,7 @@ function submitForm() {
           });
         return;
     }
+    console.log(formItems)
     newItem(formData);
 }
 
@@ -297,8 +307,6 @@ function handleFileInputChange() {
     }
   }
   
-
-
 
 const playButton = document.getElementById('playButton');
 const pauseButton = document.getElementById('pauseButton');
@@ -363,29 +371,6 @@ if(video){
     });
 }
 
-
-// Add an event listener to toggle button visibility when the video's playback state changes
-// if(!video){
-    
-// }else{
-//     video.addEventListener('play', () => {
-//         playButton.style.display = 'none'; // Hide "Play" button
-//         pauseButton.style.display = 'block'; // Show "Pause" button
-//         });
-        
-//     video.addEventListener('pause', () => {
-//     pauseButton.style.display = 'none'; // Hide "Pause" button
-//     playButton.style.display = 'block'; // Show "Play" button
-//     });
-// }
-
-
-// playButton.addEventListener('click', playVideo);
-// pauseButton.addEventListener('click', pauseVideo);
-
-// // Add an event listener to the file input
-// document.getElementById('video-uploader').addEventListener('change', handleVideoInputChange);
-
 // Add an event listener to the file input
 const ImageUploader = document.getElementById('image-uploader');
 if(ImageUploader){
@@ -396,8 +381,9 @@ const VideoUploader = document.getElementById('video-uploader');
 if(VideoUploader){
     VideoUploader.addEventListener('change', handleVideoInputChange);
 }
-// document.getElementById('image-uploader').addEventListener('change', handleFileInputChange);
-// document.getElementById('video-uploader').addEventListener('change', handleVideoInputChange);
+
+
+
 
 // Event listener for the "Print Data" button
 document.getElementById('submit').addEventListener('click', submitForm);

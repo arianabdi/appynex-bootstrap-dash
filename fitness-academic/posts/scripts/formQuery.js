@@ -1,56 +1,55 @@
 const heading = {
-    title: "ایجاد پکیج جدید",
-    description: "در این بخش اقدام به ایجاد پکیج های فروشی خود کنید! "
+    title: "ایجاد مقاله جدید",
+    description: " "
 }
 
 let formItems = [
     [
 
         {
-            title: "عنوان پکیج",
-            slug: 'name',
+            title: "عنوان مقاله",
+            slug: 'title',
             type: "text",
-            regex: /^[A-Za-z\u0600-\u06FF\s]+$/,
-            alert: 'Name should contain only letters and spaces with no underline or numbers.',
-            value: "",
-        },
-        
-        {
-            title: "شناسه پکیج",
-            slug: 'slug',
-            type: "text",
-            regex: /^[A-Za-z0-9_]+$/,
-            alert: 'Slug should contain only letters, numbers, and underscores.',
+            isRequired: true,
             value: "",
         },
     ],
     [
-
         {
-            title: "قیمت",
-            slug: 'price',
-            type: "text",
-            regex: /^[0-9]+$/,
-            alert: 'Price should contain only  numbers',
-            value: "",
-        },
-        {
-            title: " مدت زمان",
-            slug: 'duration',
+            title: "دسته بندی",
+            slug: 'categoryId',
             type: "select",
             isRequired: true,
             options: [
-                {label: '۱ ماهه', value: 1},
-                {label: '۳ ماهه', value: 3},
+                {label: 'اخبار', value: "6489c0f8e32a24bcc407358b"},
+                {label: 'رویدادها', value: "6489c10de32a24bcc407358f"},
+                {label: 'آموزش', value: "6489c25d8af43daa7085071d"},
             ],
             value: "",
         },
     ],
     [
         {
-            title: "توضیحات",
-            slug: 'description',
+            title: "متن مقاله",
+            slug: 'content',
             type: "textarea",
+            isRequired: true,
+            value: "",
+        },
+    ],
+    [
+        {
+            title: "ویدیو مقاله",
+            slug: 'video',
+            type: "video",
+            value: "",
+        },
+    ],
+    [
+        {
+            title: "تصویر مقاله",
+            slug: 'image',
+            type: "image",
             value: "",
         },
     ]
