@@ -29,10 +29,12 @@ function _renderItem(data) {
     }else{
         data.forEach(item => {
             const row = document.createElement('tr');
-
+            
             tableStructure.map(el => {
                 if(el.useJalaliFormat=== true){
                     row.innerHTML += `<td>${toJalali(item[el.slug])}</td>`; // if you need jalali format 
+                }else if(el.useLink === true){
+                    row.innerHTML += `<td><a href="${el.link.replace(/xxx/g, item['_id'])}">${item[el.slug]}</a></td>`; // if you need to translate a value add them into "../translate/translate.js"
                 }else if(el.useTranslate === true){
                     row.innerHTML += `<td>${translate(item[el.slug])}</td>`; // if you need to translate a value add them into "../translate/translate.js"
                 }else if(el.useButton === true){

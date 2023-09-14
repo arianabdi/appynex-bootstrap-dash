@@ -17,16 +17,7 @@ function InputSelector(type, options, slug, row){
         case 'textarea':
             return `<textarea class="form-control yekan-bakh" rows="4" data-index="1" data-label="${slug}"  placeholder="توضیحات"></textarea>` ;
             break;
-        
-        case 'ql-editor':
-            return `      
-            <div class="editor-full">
-                <div id="document-full" class="ql-scroll-y" style="height: 300px;">
-                    <h1>jQueryScript.Net</h1>
-                </div>
-            </div>
-            ` ;
-            break;   
+
 
         case 'image':
             return `

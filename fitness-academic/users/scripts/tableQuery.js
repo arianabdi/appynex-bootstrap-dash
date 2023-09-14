@@ -6,6 +6,8 @@ const tableStructure = [
     {
         title: "شناسه",
         slug: '_id',
+        useLink: true,
+        link: './profile.html?userId=xxx' // insert xxx to replace text with link
     },
     {
         title: "نام و نام خانوادگی",

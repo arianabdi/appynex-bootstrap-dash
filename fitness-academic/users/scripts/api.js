@@ -42,6 +42,25 @@ function newItem(body){
     });
 }
 
+async function getItem(userId){
+
+  setIsLoading(true);
+  return (await axios.get(`${baseUrl}/user/${userId}`, {headers: {...headers}})).data.user
+  // .then(response => {
+  //   console.log('resp',response.data )
+  //     data = response.data.user; // Assuming data is an array of objects
+      
+  //     // _renderItem(data); // Populate the table with the fetched data
+     
+  //     setIsLoading(false);
+  //     return response.data;
+  // })
+  // .catch(error => {
+  //     console.error('Error fetching data:', error);
+  // });
+}
+
+
 function deleteItem({packageId}){
     axios.delete(`${baseUrl}/user/${packageId}`)
     .then(response => {

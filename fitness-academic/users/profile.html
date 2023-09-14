@@ -47,60 +47,8 @@
           <p class="mg-b-30 yekan-bakh">در بخش باید متناسب با اطلاعات وارد شده توسط کاربر، برنامه تمرینی و غذایی ایجاد و ثبت شود</p>
   
 
-          <div class="profile">
-            <div class="row profile-container">
-                <div class="col-md-4 profile-image">
-                    <img src="https://i.pravatar.cc/150?u=a042581f4e290262464" alt="Profile Image" class="img-fluid rounded-circle">
-                    <h4 class="mt-3">آرین عبدی</h4>
-                </div>
-                <div class="col-md-8 information-container">
-                    <div class="info-row">
-                        <h5>اطلاعات هویتی</h5>
-                        <div class="row">
-                            <div class="col-sm order-2 font-yekan-bakh">نام و نام خانوادگی:</div>
-                            <div class="col-sm order-3 d-flex justify-content-end font-yekan-bakh">آرین عبدی</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm order-2 font-yekan-bakh">کد ملی:</div>
-                            <div class="col-sm order-3 d-flex justify-content-end font-yekan-bakh">0016344987</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm order-2 font-yekan-bakh">شماره شناسنامه:</div>
-                            <div class="col-sm order-3 d-flex justify-content-end font-yekan-bakh">1135478</div>
-                        </div>
-                    </div>
-                    <div class="info-row">
-                        <h5>اطلاعات تماس</h5>
-                        <div class="row">
-                            <div class="col-sm order-2 font-yekan-bakh">تلفن ثابت:</div>
-                            <div class="col-sm order-3 d-flex justify-content-end font-yekan-bakh">021-12345678</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm order-2 font-yekan-bakh">تلفن همراه:</div>
-                            <div class="col-sm order-3 d-flex justify-content-end font-yekan-bakh">0912-345-6789</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm order-2 font-yekan-bakh">ایمیل:</div>
-                            <div class="col-sm order-3 d-flex justify-content-end font-yekan-bakh">user@example.com</div>
-                        </div>
-                    </div>
-                    <div class="info-row">
-                        <h5>تنظیمات</h5>
-                        <div class="row">
-                            <div class="col-sm order-2 font-yekan-bakh">نقش ها:</div>
-                            <div class="col-sm order-3 d-flex justify-content-end font-yekan-bakh">مدیر</div>
-                        </div>
-                        <div class="row">
-                            <div class="col-sm order-2 font-yekan-bakh">ارسال تیکت:</div>
-                            <div class="col-sm order-3 d-flex justify-content-end font-yekan-bakh">
-                                <a class="col-sm btn btn-outline-light yekan-bakh btn-sm" >
-                                     ارسال
-                                </a> 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+          <div class="profile" id="profile-placeholder">
+            
             
           </div>
 
@@ -118,51 +66,28 @@
   
             <div class="tab-content mg-t-20" id="myTabContent5">
               
-              <div class="tab-pane fade show active" id="exercises" role="tabpanel" aria-labelledby="exercises-tab">
-  
-                <<form id="exerciseForm" >
-                  <div id="exerciseContainer">
-                    
-                    
-                    
-                  </div>
-                </form>>
-            
+              <div class="tab-pane fade show active" id="exercises" role="tabpanel" aria-labelledby="transaction-tab">
+                <table class="table mg-b-0">
+                  <thead id="tableHeader">
+                    <tr>
 
+                      <td>شناسه تراکنش</td>
+                      <td>مقدار</td>
+                      <td>هدف تراکنش</td>
+                      <td>تاریخ ایجاد</td>
+                    </tr>
+                  </thead>
+                  <tbody id="transactions-placeholder">
 
-                <div class="col-sm order-3 d-flex justify-content-end">
-                  <a class="col-sm btn btn-outline-light yekan-bakh btn-sm" id="addItemToExerciseContainer">
-                    <i data-feather="plus"></i> افزودن تمرین جدید
-                  </a> 
-                </div>
-
+                  </tbody>
+                </table>
               </div>
-  
+              <div class="tab-pane fade" id="diet" role="tabpanel" aria-labelledby="plans-tab">
 
-
-
-
-
-
-
-
-
-
-              <div class="tab-pane fade" id="diet" role="tabpanel" aria-labelledby="diet-tab">
-
-                <form id="dietForm" >
-                  <div id="dietContainer">
-                    
-                  </div>
-                </form>
-                
-                
-                <div class="col-sm order-3 d-flex justify-content-end">
-                  <a class="col-sm btn btn-outline-light yekan-bakh btn-sm" id="addItemToDietContainer">
-                    <i data-feather="plus"></i> افزودن گزینه جدید
-                  </a> 
+                <div id="dietContainer">
+                  <h1>plans</h1>
                 </div>
-
+                
               </div>
 
 
@@ -209,7 +134,9 @@
     <script src="../../env.js"></script>
     <script src="../layout/layout.js"></script>
     <script src="../layout/loader.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="../plugins/axios.js"></script>
+    <script src="./scripts/api.js"></script>
+    <script src="../scripts/profile.js"></script>
 
 
   </body>
