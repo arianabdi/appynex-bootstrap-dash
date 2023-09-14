@@ -9,6 +9,9 @@ function setIsLoading(status){
     // $('#table-main-placeholder').show();
 }
 
+function toJalali(gregorianDate){
+    return moment(gregorianDate, 'YYYY-MM-DD').format('jYYYY/jMM/jDD');
+}
 
 
 document.addEventListener("DOMContentLoaded",async () => {
@@ -25,6 +28,7 @@ document.addEventListener("DOMContentLoaded",async () => {
     //find profile segment and append to it
     const profileElement = document.getElementById('profile-placeholder');
     const TransactionsTable = document.getElementById('transactions-placeholder');
+    const ProgramsTable = document.getElementById('programs-placeholder');
     
     profileElement.innerHTML = `
     <div class="row profile-container">
@@ -61,30 +65,35 @@ document.addEventListener("DOMContentLoaded",async () => {
                             <div class="col-sm order-2 font-yekan-bakh">نقش ها:</div>
                             <div class="col-sm order-3 d-flex justify-content-end font-yekan-bakh">${userData.roles || 'ثبت نشده'}</div>
                         </div>
-                        <div class="row">
-                            <div class="col-sm order-2 font-yekan-bakh">ارسال تیکت:</div>
-                            <div class="col-sm order-3 d-flex justify-content-end font-yekan-bakh">
-                                <a class="col-sm btn btn-outline-light yekan-bakh btn-sm" >
-                                     ارسال
-                                </a> 
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
     `;
 
     var t = '';
+    var p = '';
+
     userData.transactions.map(item => {
          t += `
             <tr>
                 <td>${item._id}</td>
                 <td>${item.amount}</td>
                 <td>${item.depositPurpose}</td>
-                <td>${item.createdAt}</td>
+                <td>${toJalali(item.createdAt)}</td>
             </tr>
         `
     })
-   
+    
+    userData.programs.map(item => {
+         p += `
+            <tr>
+                <td>${item._id}</td>
+                <td>${item?.packageId || '-'}</td>
+                <td>${toJalali(item.createdAt)}</td>
+            </tr>
+        `
+    })
+
     TransactionsTable.innerHTML = t;
+    ProgramsTable.innerHTML = p;
 });
