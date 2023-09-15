@@ -23,72 +23,76 @@ function fetchData({page, limit, totalPages, filter}){
     });
 }
 
-    // async function getItem(userId){
-
-    //     // setIsLoading(true);
-    //     return (await axios.get(`${baseUrl}/user/${userId}`, {headers: {...headers}})).data.user
-    
-    // }
 
 
-    async function getAllExerciseCategory(){
-        return (await axios.get(`${baseUrl}/category/exercise`, {headers: {...headers}})).data.data.categories;
-        // console.log('categories', response);
+
+
+
+async function getAllExerciseCategory(){
+    return (await axios.get(`${baseUrl}/category/exercise`, {headers: {...headers}})).data.data.categories;
+    // console.log('categories', response);
+}
+
+
+
+
+
+async function getProgram(){
+    console.log('getPrograms')
+    // Get the URL parameters
+    var urlParams = new URLSearchParams(window.location.search);
+
+    // Get the value of the "programId" parameter
+    var programId = urlParams.get("programId");
+
+
+    try {
+        const response = await axios.get(`${baseUrl}/programs/${programId}`, {headers: {...headers}});
+        const program = response.data.data.program;
+        const exercises = program.exercises;
+        const diet = program.diet;
+
+        //load specification
+        Object.keys(program).map(async item=>{
+            if(item !== '_id' && item !== 'diet' && item !== 'exercises' && item !== 'description' && item !== 'number'){
+                //this function comes from ./script/manageSpecificationList.js
+                await addUserSpeceficationItem(item, program[item])
+            }
+        })
+
+        //load diet form
+        diet.map(dietItem => {
+            console.log('dietItem', dietItem);
+        })
+
+        //initialize exercise form
+        categories = await getAllExerciseCategory();
+        console.log('categories', categories);
+
+        exercises.map((item, index) => {
+            console.log('exerciseItem', item);
+            addItemToExercise(index, item, categories)
+            //set tableStructure 
+        })
+
+    } catch (error) {
+        console.error('Error fetching data:', error);
     }
 
-    async function getProgram(){
-        console.log('getPrograms')
-        // Get the URL parameters
-        var urlParams = new URLSearchParams(window.location.search);
-
-        // Get the value of the "programId" parameter
-        var programId = urlParams.get("programId");
+}
 
 
-        try {
-            const response = await axios.get(`${baseUrl}/programs/${programId}`, {headers: {...headers}});
-            const program = response.data.data.program;
-            const exercises = program.exercises;
-            const diet = program.diet;
+async function updateItem(programId, program){
 
-            //load specification
-            Object.keys(program).map(async item=>{
-                if(item !== '_id' && item !== 'diet' && item !== 'exercises' && item !== 'description'){
-                    //this function comes from ./script/manageSpecificationList.js
-                    await addUserSpeceficationItem(item, program[item])
-                }
-            })
-
-            //load diet form
-            diet.map(dietItem => {
-                console.log('dietItem', dietItem);
-            })
-
-            //initialize exercise form
-            categories = await getAllExerciseCategory();
-            console.log('categories', categories);
-
-            exercises.map((item, index) => {
-                console.log('exerciseItem', item);
-                addItemToExercise(index, item, categories)
-                //set tableStructure 
-            })
-
-
-            // let specifications = response.data.data.program;
-            // delete specifications._id;
-            // delete specifications.__v;
-            // delete specifications.diet;
-            // delete specifications.exercises;
-            // delete specifications.description;
-            // return specifications;
-        } catch (error) {
-            console.error('Error fetching data:', error);
-        }
-        
+    // setIsLoading(true);
+    try {
+        const response = await axios.patch(`${baseUrl}/programs/${programId}`, program, {headers: {...headers}})
+        console.log('Update Program', response);
+    } catch (error) {
+        console.log('Error in Update Program', error);
     }
+}
   
 
-    getAllExerciseCategory();
-    // getAllExerciseListByCategoryId('6489c0dfe32a24bcc4073587');
-    getProgram();
+getAllExerciseCategory();
+getProgram();
