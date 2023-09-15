@@ -113,16 +113,3 @@ function translateText(text){
     document.getElementById('specificationContainer').appendChild(newItemElement);
   }
 
-  async function loadSpecifications() {
- 
-    //this function comes from  ./scripts/api.js
-    const specifications = await getItem();
-    console.log("specispecificationsfication", specifications)
-
-    Object.keys(specifications).map(async item=>{
-        console.log("specification", item)
-        await addUserSpeceficationItem(item, specifications[item])
-    })
-  }
-
-  loadSpecifications()

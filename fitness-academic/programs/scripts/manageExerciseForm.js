@@ -4,7 +4,7 @@ var exercisesFormData = [];
 
 
 // Function to add a new item to the form
-function addItemToExercise(index) {
+function addItemToExercise(index, item, categories) {
     var newItem = {
       "sets": "",
       "reps": "",
@@ -81,10 +81,10 @@ function addItemToExercise(index) {
             <div class="row">
             <div class="col-sm-12 order-2 yekan-bakh">دسته بندی تمرین</div>
             <div class="col-sm-12 order-3 d-flex justify-content-end">
-                <select class="form-select yekan-bakh categoryId" data-index="${index}" data-label="categoryId" id="select-limit">
-                    <option class="yekan-bakh" value="meal">وعده غذایی</option>
-                    <option class="yekan-bakh" value="supplement"selected>مکمل</option>
-                    <option class="yekan-bakh" value="limitation">محدودیت</option>
+                <select class="form-select yekan-bakh categoryId w-100" data-index="${index}" data-label="categoryId" id="select-limit">
+                    ${categories.map(i => {
+                      return `<option class="yekan-bakh" ${item.categoryId === i._id ? 'selected' : ''} value="${i._id}">${i.title}</option>`
+                    })}
                 </select>
             </div>
             </div>
@@ -93,10 +93,16 @@ function addItemToExercise(index) {
             <div class="row">
             <div class="col-sm-12 order-2 yekan-bakh">عنوان تمرین</div>
             <div class="col-sm-12 order-3 d-flex justify-content-end">
-                <select class="form-select yekan-bakh exerciseId" data-index="${index}" data-label="exerciseId" id="select-limit">
-                    <option class="yekan-bakh" value="meal">وعده غذایی</option>
-                    <option class="yekan-bakh" value="supplement"selected>مکمل</option>
-                    <option class="yekan-bakh" value="limitation">محدودیت</option>
+                <select class="form-select yekan-bakh exerciseId w-100" data-index="${index}" data-label="exerciseId" id="select-limit">
+                    ${categories.map(i => {
+                      if(item.categoryId === i._id){
+                        return i.exercises.map(j => {
+                          console.log('test-select', item.categoryId, i._id, j)
+                          return `<option class="yekan-bakh" ${item.exerciseId === j._id ? 'selected' : ''} value="${j._id}">${j.title}</option>`
+                        })
+                      }
+                        
+                    })}
                 </select>
             </div>
             </div>
@@ -136,7 +142,7 @@ function addItemToExercise(index) {
     
   }
 
-addItemToExercise(0)
+
 
 function removeItemFromExercise(index) {
   // Remove the item from the list (e.g., using jQuery)
@@ -158,6 +164,9 @@ function removeItemFromExercise(index) {
 
 
 
+
+
+
 var form = document.getElementById("exerciseForm");
 
 
@@ -166,8 +175,12 @@ form.addEventListener("change", function(event) {
     let value = event.target.value;
     let index = event.target.dataset.index;
     let label = event.target.dataset.label;
+    console.log('change', label, value)
 
     exercisesFormData[index][label] = value;
+
+    
+    //if "category" SelectOptions changes, then change all <options> in "exercise" SelectOptions
 });
 
 
