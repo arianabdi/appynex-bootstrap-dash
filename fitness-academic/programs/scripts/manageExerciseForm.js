@@ -6,12 +6,13 @@ var exercisesFormData = [];
 // Function to add a new item to the form
 function addItemToExercise(index, item, categories) {
     var newItem = {
-      "sets": "",
-      "reps": "",
-      "rest": "",
-      "weight": "",
-      "categoryId": "",
-      "exerciseId": ""
+      "sets": item.sets || "",
+      "reps": item.reps || "",
+      "rest": item.rest || "",
+      "weight": item.weight || "",
+      "categoryId": item.categoryId || "",
+      "exerciseId": item.exerciseId || "",
+      "description": item.description || "",
     };
   
     // Create a new item HTML structure
@@ -26,7 +27,7 @@ function addItemToExercise(index, item, categories) {
           aria-expanded="false" 
           aria-controls="collapseExample"
         >
-          <div class="col-sm yekan-bakh indexer">${index}. ${exercisesFormData[index] ? exercisesFormData[index]['sets'] : 'تعریف نشده'}</div>
+          <div class="col-sm yekan-bakh indexer" data-label="title" data-index="${index}">${parseInt(index)+1}. ${categories.filter(i=>i._id === newItem.categoryId)[0]?.exercises.filter(i=>i._id === newItem.exerciseId)[0].title || 'تعریف نشده'}</div>
         </a>
       </div>
       <div class="col-sm d-flex justify-content-end">
@@ -43,7 +44,7 @@ function addItemToExercise(index, item, categories) {
           <div class="row">
             <div class="col-sm-12 order-2 yekan-bakh">تعداد ست</div>
             <div class="col-sm-12 order-3 d-flex justify-content-end">
-              <input type="text" class="form-control yekan-bakh sets" data-index="${index}" data-label="sets" placeholder="تعداد ست">
+              <input type="text" class="form-control yekan-bakh sets" value="${newItem.sets}" data-index="${index}" data-label="sets" placeholder="تعداد ست">
             </div>
           </div>
         </div>
@@ -51,7 +52,7 @@ function addItemToExercise(index, item, categories) {
           <div class="row">
             <div class="col-sm-12 order-2 yekan-bakh">تعداد تکرار</div>
             <div class="col-sm-12 order-3 d-flex justify-content-end">
-              <input type="text" class="form-control yekan-bakh reps" data-index="${index}" data-label="reps" placeholder="تعداد تکرار">
+              <input type="text" class="form-control yekan-bakh reps" value="${newItem.reps}" data-index="${index}" data-label="reps" placeholder="تعداد تکرار">
             </div>
           </div>
         </div>
@@ -62,7 +63,7 @@ function addItemToExercise(index, item, categories) {
             <div class="row">
             <div class="col-sm-12 order-2 yekan-bakh">استراحت بین ست</div>
             <div class="col-sm-12 order-3 d-flex justify-content-end">
-                <input type="text" class="form-control yekan-bakh rest" data-index="${index}" data-label="rest" placeholder="استراحت بین ست">
+                <input type="text" class="form-control yekan-bakh rest" value="${newItem.rest}" data-index="${index}" data-label="rest" placeholder="استراحت بین ست">
             </div>
             </div>
         </div>
@@ -70,7 +71,7 @@ function addItemToExercise(index, item, categories) {
             <div class="row">
             <div class="col-sm-12 order-2 yekan-bakh">وزن </div>
             <div class="col-sm-12 order-3 d-flex justify-content-end">
-                <input type="text" class="form-control yekan-bakh weight" data-index="${index}" data-label="weight" placeholder="وزن">
+                <input type="text" class="form-control yekan-bakh weight" value="${newItem.weight}" data-index="${index}" data-label="weight" placeholder="وزن">
             </div>
             </div>
         </div>
@@ -82,8 +83,9 @@ function addItemToExercise(index, item, categories) {
             <div class="col-sm-12 order-2 yekan-bakh">دسته بندی تمرین</div>
             <div class="col-sm-12 order-3 d-flex justify-content-end">
                 <select class="form-select yekan-bakh categoryId w-100" data-index="${index}" data-label="categoryId" id="select-limit">
+                    <option class="yekan-bakh" value=""></option>
                     ${categories.map(i => {
-                      return `<option class="yekan-bakh" ${item.categoryId === i._id ? 'selected' : ''} value="${i._id}">${i.title}</option>`
+                      return `<option class="yekan-bakh" ${newItem.categoryId === i._id ? 'selected' : ''} value="${i._id}">${i.title}</option>`
                     })}
                 </select>
             </div>
@@ -94,11 +96,11 @@ function addItemToExercise(index, item, categories) {
             <div class="col-sm-12 order-2 yekan-bakh">عنوان تمرین</div>
             <div class="col-sm-12 order-3 d-flex justify-content-end">
                 <select class="form-select yekan-bakh exerciseId w-100" data-index="${index}" data-label="exerciseId" id="select-limit">
+                    <option class="yekan-bakh" value=""></option>
                     ${categories.map(i => {
                       if(item.categoryId === i._id){
                         return i.exercises.map(j => {
-                          console.log('test-select', item.categoryId, i._id, j)
-                          return `<option class="yekan-bakh" ${item.exerciseId === j._id ? 'selected' : ''} value="${j._id}">${j.title}</option>`
+                          return `<option class="yekan-bakh" ${newItem.exerciseId === j._id ? 'selected' : ''} value="${j._id}">${j.title}</option>`
                         })
                       }
                         
@@ -114,7 +116,7 @@ function addItemToExercise(index, item, categories) {
             <div class="row">
             <div class="col-sm-12 order-2 yekan-bakh">توضیحات</div>
             <div class="col-sm-12 order-3 d-flex justify-content-end">
-                <textarea  id="description" class="form-control yekan-bakh description" data-index="${index}" data-label="description" rows="4" placeholder="توضیحات"></textarea>
+                <textarea  id="description" class="form-control yekan-bakh description" data-index="${index}" data-label="description" rows="4" placeholder="توضیحات">${newItem.description}</textarea>
             </div>
             </div>
         </div>
@@ -179,6 +181,33 @@ form.addEventListener("change", function(event) {
 
     exercisesFormData[index][label] = value;
 
+    if(label === 'categoryId'){
+      //set options of exercises SelectOptions to this index
+      var $select = $(`select[data-label="exerciseId"][data-index="${index}"]`);
+      if ($select.length > 0) {
+        // Clear existing options (if needed)
+        $select.empty();
+        $select.append(`<option class="yekan-bakh" value=""></option>`);
+
+        categories.map(cat => {
+            if(cat._id === value){
+              cat.exercises.map(i => {
+                $select.append(`<option class="yekan-bakh" value="${i._id}">${i.title}</option>`);
+              })
+            }
+        })
+
+      } else {
+        console.log("Select element not found with data-label and data-index:", targetLabel, targetIndex);
+      }
+    }
+
+    if(label === 'exerciseId'){
+      var $div = $(`div[data-label="title"][data-index="${index}"]`);
+      // $select.empty();
+      $div.text(`${parseInt(index)+1}. ${categories.filter(i=>i._id === exercisesFormData[index].categoryId)[0].exercises.filter(i=>i._id === value)[0].title}`);
+      
+    }
     
     //if "category" SelectOptions changes, then change all <options> in "exercise" SelectOptions
 });
@@ -187,7 +216,18 @@ form.addEventListener("change", function(event) {
 // Event listener for the "Add Item" button
 document.getElementById('addItemToExerciseContainer').addEventListener('click', ()=>{
     console.log('addItemToExerciseContainer')
-    addItemToExercise(exercisesFormData.length)
+    addItemToExercise(
+      exercisesFormData.length,
+      {
+        "categoryId": "",
+        "exerciseId": "",
+        "reps": "0",
+        "rest": "0",
+        "sets": "0",
+        "weight": "0"
+      },
+      categories
+      )
 });
 
 

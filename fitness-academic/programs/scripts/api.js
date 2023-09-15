@@ -71,7 +71,6 @@ function fetchData({page, limit, totalPages, filter}){
             exercises.map((item, index) => {
                 console.log('exerciseItem', item);
                 addItemToExercise(index, item, categories)
-
                 //set tableStructure 
             })
 
