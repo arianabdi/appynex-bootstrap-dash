@@ -95,7 +95,7 @@ function translateText(text){
     }
   }
   
-  function addUserSpeceficationItem(key, value){
+  async function addUserSpeceficationItem(key, value){
     var newItemHTML = `
     <div class="row">
       <div class="col-sm order-2 font-yekan-bakh">${translateText(key)}</div>
@@ -113,33 +113,16 @@ function translateText(text){
     document.getElementById('specificationContainer').appendChild(newItemElement);
   }
 
+  async function loadSpecifications() {
+ 
+    //this function comes from  ./scripts/api.js
+    const specifications = await getItem();
+    console.log("specispecificationsfication", specifications)
 
-  async function loadProgram(){
-    // Get the URL parameters
-    var urlParams = new URLSearchParams(window.location.search);
-  
-    // Get the value of the "programId" parameter
-    var programId = urlParams.get("programId");
-    var token = localStorage.getItem("token");
-    console.log('token', token, 'programId', programId);
-  
-    await axios.get(`http://localhost:30112/api/programs/${programId}`, {headers: {Authorization: `Bearer ${token}`}})
-    .then(response => {
-        console.log('response', response);
-        var specifications = response.data.data;
-        delete specifications._id;
-        delete specifications.__v;
-        delete specifications.diet;
-        delete specifications.exercises;
-        delete specifications.description;
-        Object.keys(specifications).map(item=>{
-          addUserSpeceficationItem(item, specifications[item])
-        })
-  
+    Object.keys(specifications).map(async item=>{
+        console.log("specification", item)
+        await addUserSpeceficationItem(item, specifications[item])
     })
-    .catch(error => {
-        console.error('Error fetching data:', error);
-    });
   }
-  
-  loadProgram();
+
+  loadSpecifications()

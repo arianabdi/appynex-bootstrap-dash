@@ -42,22 +42,16 @@ function newItem(body){
     });
 }
 
-async function getItem(userId){
+async function getItem(){
+    // fetchData() is located at "./scripts/api.js"
+    var url = new URL(window.location.href);
 
-  setIsLoading(true);
+    // Get the value of the 'userId' parameter
+    var programId = url.searchParams.get("programId");
+
+  // setIsLoading(true);
   return (await axios.get(`${baseUrl}/user/${userId}`, {headers: {...headers}})).data.user
-  // .then(response => {
-  //   console.log('resp',response.data )
-  //     data = response.data.user; // Assuming data is an array of objects
-      
-  //     // _renderItem(data); // Populate the table with the fetched data
-     
-  //     setIsLoading(false);
-  //     return response.data;
-  // })
-  // .catch(error => {
-  //     console.error('Error fetching data:', error);
-  // });
+
 }
 
 
