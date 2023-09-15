@@ -61,18 +61,17 @@ async function getProgram(){
         })
 
         //load diet form
-        diet.map(dietItem => {
-            console.log('dietItem', dietItem);
+        diet.map((item, index) => {
+            console.log('diet', item)
+            return addItemToDiet(index, item)
         })
+
+
 
         //initialize exercise form
         categories = await getAllExerciseCategory();
-        console.log('categories', categories);
-
         exercises.map((item, index) => {
-            console.log('exerciseItem', item);
-            addItemToExercise(index, item, categories)
-            //set tableStructure 
+            return addItemToExercise(index, item, categories)
         })
 
     } catch (error) {

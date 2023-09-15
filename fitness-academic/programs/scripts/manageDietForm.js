@@ -4,13 +4,13 @@ var dietFormData = [];
 
 
 
-function addNewDietSuggestion(index){
+function addNewDietSuggestion(index, item){
     console.log('index', index)
     var newDietSuggestionItem = `
           <div class="row">
             <div class="col-sm-12 order-2 yekan-bakh">${index}</div>
             <div class="col-sm-12 order-3 d-flex justify-content-end">
-              <input type="text" class="form-control yekan-bakh suggestion" data-index="${index}" data-label="suggestion" placeholder="پیشنهاد">
+              <input type="text" class="form-control yekan-bakh suggestion" value="${item || ''}" data-index="${index}" data-label="suggestion" placeholder="پیشنهاد">
               <a class="col-sm btn btn-outline-light mg-r-5 remove-suggestion-button"  data-index="${index}">
                 <i data-feather="x" class="sz-20"></i>
               </a> 
@@ -24,14 +24,19 @@ function addNewDietSuggestion(index){
 
 
 // Function to add a new item to the form
-function addItemToDiet(index) {
+function addItemToDiet(index, item) {
   var newItem = {
-    "title": "",
-    "type": "",
-    "suggestions": [
+    "title": item.title || '',
+    "type":  item.type || '',
+    "suggestions":  item.suggestions || [
       "",
     ],
   };
+  let suggestionsList = ''
+
+  newItem.suggestions.map((item, index)=>{
+    suggestionsList += addNewDietSuggestion(index, item)
+  })
 
   // Create a new item HTML structure
   var newItemHTML = `
@@ -61,7 +66,7 @@ function addItemToDiet(index) {
           <div class="row">
             <div class="col-sm-12 order-2 yekan-bakh">عنوان</div>
             <div class="col-sm-12 order-3 d-flex justify-content-end">
-              <input type="text" class="form-control title" data-index="${index}" data-label="title" placeholder="عنوان">
+              <input type="text" class="form-control title" data-index="${index}" value="${newItem.title}" data-label="title" placeholder="عنوان">
             </div>
           </div>
         </div>
@@ -70,9 +75,10 @@ function addItemToDiet(index) {
             <div class="col-sm-12 order-2 yekan-bakh">نوع</div>
             <div class="col-sm-12 order-3 d-flex justify-content-end">
               <select class="form-select yekan-bakh type" data-index="${index}" data-label="type">
-                <option class="yekan-bakh" value="meal">وعده غذایی</option>
-                <option class="yekan-bakh" value="supplement">مکمل</option>
-                <option class="yekan-bakh" value="limitation">محدودیت</option>
+                <option class="yekan-bakh" value=""></option>
+                <option class="yekan-bakh" ${newItem.type === 'meal' ? 'selected' : ''} value="meal">وعده غذایی</option>
+                <option class="yekan-bakh" ${newItem.type === 'supplement' ? 'selected' : ''} value="supplement">مکمل</option>
+                <option class="yekan-bakh" ${newItem.type === 'limitation' ? 'selected' : ''} value="limitation">محدودیت</option>
               </select>
             </div>
           </div>
@@ -92,7 +98,7 @@ function addItemToDiet(index) {
           </div>
 
           <div id="suggestions-container"  data-index="${index}" data-label="suggestion-container" >
-            ${addNewDietSuggestion(0)}
+            ${suggestionsList}
           </div>
 
         </div>
@@ -120,7 +126,7 @@ function addItemToDiet(index) {
 }
 
 
-addItemToDiet(0)
+
 
 function removeItemFromDiet(index) {
     // Remove the item from the list (e.g., using jQuery)
