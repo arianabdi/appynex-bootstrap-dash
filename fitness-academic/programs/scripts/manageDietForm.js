@@ -182,8 +182,14 @@ form.addEventListener("change", function(event) {
 
 
 document.getElementById('addItemToDietContainer').addEventListener('click', ()=>{
-    console.log('addItemToDietContainer')
-    addItemToDiet(dietFormData.length)
+    var item = {
+      "title": '',
+      "type":   '',
+      "suggestions": [
+        "",
+      ],
+    };
+    addItemToDiet(dietFormData.length, item)
 });
 
 
