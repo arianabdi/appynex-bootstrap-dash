@@ -3,20 +3,8 @@ body{
     direction: rtl;
 }
 
-.content{
-  display: flex
-}
-
-#sidebar-placeholder{
-  width: 240px;
-}
-
-.content-container{
-  flex: 1;
-}
-
 .nav-item{
-    padding: 0px 20px;
+    padding: 0px 0px;
 }
 
 .form-select{
@@ -82,10 +70,10 @@ body{
     margin-right: unset
 }
 .sidebar-nav .nav-link.with-sub::after {
-    border-left: 1.5px solid #8392a5;
-    border-right: unset;
-    margin-right: auto;
-
+      border-left: 1.5px solid #8392a5;
+      border-right: unset;
+      margin-left: unset;
+      margin-right: auto;
   }
 
 @media (min-width: 1200px) {
@@ -158,32 +146,3 @@ body{
 
 
 
-
-/* Header Notification Dropdown*/
-.dropdown-menu-end[data-bs-popper]{
-  right: auto;
-  left: 0;
-}
-
-@media (min-width: 576px) {
-  .navbar-header .navbar-right .dropdown-notification .dropdown-menu::before {
-    left: 20px;
-  }
-}
-
-.navbar-header .navbar-right .dropdown-notification .dropdown-menu::before {
-  left: 48px;
-}
-.dropdown-notification .dropdown-menu.dropdown-menu-end::before {
-  right: auto;
-  left: 20px;
-}
-
-.dropdown-profile .dropdown-menu.dropdown-menu-end::before {
-  right: auto;
-  left: 15px;
-}
-dropdown-profile .dropdown-menu::before {
-  left: unset;
-  right: 25px;
-}

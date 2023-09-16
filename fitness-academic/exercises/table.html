@@ -10,16 +10,13 @@
 
     <script src="../layout/head.js"></script>
   </head>
-  <body data-bs-spy="scroll" data-bs-target="#navSection" data-offset="120">
+  <body class="yekan-bakh" data-bs-spy="scroll" data-bs-target="#navSection" data-offset="120">
 
     <div class="text-center " id="spin-loader">
       <div class="spinner-safe-area">
         <div class="spinner-border"></div>
       </div>
     </div>
-
-
-
 
     <div id="content-loader" style="display: none;">
       <div id="header-placeholder"></div>
@@ -61,8 +58,8 @@
       <div class="content content-components">
         <div class="container">
           <ol class="breadcrumb df-breadcrumbs mg-b-10">
-            <li class="breadcrumb-item breadcrumbs-rtl yekan-bakh"><a href="#">برنامه</a></li>
-            <li class="breadcrumb-item breadcrumbs-rtl yekan-bakh active" aria-current="page">برنامه ها</li>
+            <li class="breadcrumb-item breadcrumbs-rtl yekan-bakh"><a href="#">تمرین ها</a></li>
+            <li class="breadcrumb-item breadcrumbs-rtl yekan-bakh active" aria-current="page">لیست تمرین ها</li>
           </ol>
   
           <div id="heading">
@@ -70,9 +67,12 @@
   
   
           <div class="row pd-15">
-            <div class="col-sm-7"></div>
-            <a href="#modal7" class="col-sm btn btn-outline-light btn-sm mg-l-10 yekan-bakh" data-bs-toggle="modal">
+            <div class="col-sm-5"></div>
+            <a href="#modal7" class="col-sm btn btn-outline-light btn-sm yekan-bakh" data-bs-toggle="modal">
               <i data-feather="filter"></i> فیلتر
+            </a> 
+            <a href="./form.html" class="col-sm-2 btn btn-outline-light btn-sm mg-r-10 yekan-bakh">
+              <i data-feather="plus"></i> تمرین جدید
             </a> 
             <button type="button" id="downloadCsvButton" class="col-sm-3 btn btn-sm mg-r-10 btn-outline-light yekan-bakh"> 
               <i data-feather="download"></i> دانلود فایل CSV
