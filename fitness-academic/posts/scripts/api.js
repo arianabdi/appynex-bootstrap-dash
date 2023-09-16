@@ -41,8 +41,8 @@ function newItem(body){
     });
 }
 
-function deleteItem({packageId}){
-    axios.delete(`${baseUrl}/posts/${packageId}`)
+function deleteItem({itemId}){
+    axios.delete(`${baseUrl}/posts/${itemId}`,{headers: {...headers}})
     .then(response => {
         console.log('deleteItem', response)
         if(response.status === 200){

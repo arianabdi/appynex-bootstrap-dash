@@ -108,7 +108,7 @@ $("#tableBody").on("click", ".delete-item", function() {
 
 document.getElementById('delete-item').addEventListener('click', ()=>{
     console.log('itemId', itemId)
-    deleteItem({exerciseId: itemId});
+    deleteItem({itemId: itemId});
     
 });
 

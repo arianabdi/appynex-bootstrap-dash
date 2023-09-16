@@ -71,8 +71,8 @@ function newItem(body){
     });
 }
 
-function deleteItem({exerciseId}){
-    axios.delete(`${baseUrl}/exercise/${exerciseId}`)
+function deleteItem({itemId}){
+    axios.delete(`${baseUrl}/exercise/${itemId}`)
     .then(response => {
         console.log('deleteItem', response)
         if(response.status === 200){

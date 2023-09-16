@@ -86,7 +86,17 @@ async function updateItem(programId, program){
     // setIsLoading(true);
     try {
         const response = await axios.patch(`${baseUrl}/programs/${programId}`, program, {headers: {...headers}})
-        console.log('Update Program', response);
+        if (response.status === 200) {
+            // Redirect to the "exercise list" page upon success
+            window.location.href = '../programs/table.html'; // Replace with your actual URL
+          } else {
+            console.log(response);
+            showToast({
+              title: 'ارور', 
+              message:`کد ${response.status}:  ${response.message}`
+            });
+    
+          }
     } catch (error) {
         console.log('Error in Update Program', error);
     }

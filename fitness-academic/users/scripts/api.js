@@ -55,8 +55,8 @@ async function getItem(){
 }
 
 
-function deleteItem({packageId}){
-    axios.delete(`${baseUrl}/user/${packageId}`)
+function deleteItem({itemId}){
+    axios.delete(`${baseUrl}/user/${itemId}`)
     .then(response => {
         console.log('deleteItem', response)
         if(response.status === 200){
