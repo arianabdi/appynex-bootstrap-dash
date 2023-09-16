@@ -54,7 +54,7 @@ function newItem(body){
         // Check if the request was successful
       if (response.status === 200) {
         // Redirect to the "exercise list" page upon success
-        // window.location.href = '../exercise/table.html'; // Replace with your actual URL
+        window.location.href = '../exercises/table.html'; // Replace with your actual URL
       } else {
         alert('Failed to create the exercise.'); // Handle other status codes if needed
         console.log(response);

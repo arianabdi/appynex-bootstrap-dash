@@ -210,11 +210,15 @@ function submitForm() {
             
             if(item.type === 'image'){
                 const file = imageInput.files[0];
-                formData.append(item.slug, file);
+                if(file){
+                    formData.append(item.slug, file);
+                }
                 
             }else if(item.type === 'video'){
                 const file = videoInput.files[0];
-                formData.append(item.slug, file);
+                if(file){
+                    formData.append(item.slug, file);
+                }
 
             }else{
                 formData.append(item.slug, item.value);
