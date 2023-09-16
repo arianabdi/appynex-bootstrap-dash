@@ -1,6 +1,6 @@
 let baseUrl = `http://localhost:30112/api`;
 const access_token = localStorage.getItem("token");
-let headers = {headers: {Authorization: `bearer ${access_token}`}}
+let headers = {Authorization: `bearer ${access_token}`}
 
 function fetchData({page, limit, totalPages, filter}){
     // Fetch data using Axios
@@ -26,13 +26,14 @@ function fetchData({page, limit, totalPages, filter}){
 
 function newItem(body){
 
-    axios.post(`${baseUrl}/package`, body, headers)
+  console.log(body);
+    axios.post(`${baseUrl}/package`, body,  {headers: headers})
     .then(response => {
         console.log('newItem', response)
         // Check if the request was successful
       if (response.status === 200) {
         // Redirect to the "package list" page upon success
-        window.location.href = '../packages/table.html'; // Replace with your actual URL
+        // window.location.href = '../packages/table.html'; // Replace with your actual URL
       } else {
         alert('Failed to create the package.'); // Handle other status codes if needed
       }

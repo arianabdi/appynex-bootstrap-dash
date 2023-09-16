@@ -47,7 +47,7 @@ async function getItem(){
     var url = new URL(window.location.href);
 
     // Get the value of the 'userId' parameter
-    var programId = url.searchParams.get("programId");
+    var userId = url.searchParams.get("userId");
 
   // setIsLoading(true);
   return (await axios.get(`${baseUrl}/user/${userId}`, {headers: {...headers}})).data.user
