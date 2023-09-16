@@ -4,4 +4,5 @@ $(document).ready(function() {
     $("#footer-placeholder").load("../layout/footer.html");
     $("#toast-placeholder").load("../layout/toast.html");
     $("#table-loading-placeholder").load("../layout/table-placeholder.html");
+    feather.replace();
 });
