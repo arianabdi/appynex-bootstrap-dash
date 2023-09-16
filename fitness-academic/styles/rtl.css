@@ -126,3 +126,15 @@ body{
     padding-left: unset !important;
 }
 
+
+.footer{
+  font-size: 12px;
+  letter-spacing: 0px;
+  text-transform: unset;
+  font-family: yekan-bakh;
+}
+
+.nav a{
+  margin: 0px 10px;
+}
+
