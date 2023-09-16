@@ -6,7 +6,7 @@ let headers = {"Authorization": `bearer ${access_token}`}
 function fetchData({page, limit, totalPages, filter}){
     // Fetch data using Axios
 
-
+    setIsLoading(true);
     axios.get(`${baseUrl}/exercise?page=${page}&limit=${limit}${filter ? '&'+filter : ''}`, {headers: headers})
     .then(response => {
         console.log('res',response)
@@ -19,6 +19,7 @@ function fetchData({page, limit, totalPages, filter}){
           totalItems = response.data.data.totalItems;
           totalPages = Math.ceil(totalItems / limit);
           generatePagination(page, totalPages);
+          setIsLoading(false);
         }else{
           showToast({
             title: 'ارور', 
